@@ -4,5 +4,4 @@ P = 1
 .PHONY: runstream
 
 runstream:
-	$(CC) $(CFLAGS) -DP=$(P) -o brown -fopenmp openmp_centralized3.c -lm
-	./brown
+	$(CC) $(CFLAGS) -o openmp_dissemination -fopenmp openmp_disseminated.c -lm

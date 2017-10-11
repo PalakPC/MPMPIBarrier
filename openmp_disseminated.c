@@ -9,11 +9,10 @@
 # include <stdlib.h>
 # include <math.h>
 
-# ifndef P
-#  define P 2
-# endif
-
 # define MAX_LOGP 3  //Maximum number of threads is 8, so maximum log2(P) will be 3
+# define MAX_P 8
+
+int P;
 
 typedef struct
 {
@@ -21,7 +20,7 @@ typedef struct
    int *partnerflags[2][MAX_LOGP];
 } flags;
 
-flags allnodes[P];
+flags allnodes[MAX_P];
 
 double mysecond()
 {
@@ -38,7 +37,8 @@ void dissemination_barrier()
    int sense = 1;
    flags *localflags;
    int t = omp_get_thread_num();
-   localflags = &allnodes[t];
+#  pragma omp critical
+      localflags = &allnodes[t];
    printf("Thread %d in dissemination at time %f\n", t, mysecond());
    for (instance = 0; instance < logP; instance++)
    {
@@ -52,13 +52,21 @@ void dissemination_barrier()
    printf("Thread %d out of dissemination at time %f\n", t, mysecond());
 }
 
-int main()
+int main(int argc, char **argv)
 {
+   if (argc != 2)
+   {
+      printf("Error, no argument");
+      exit(-1);
+   }
+   else
+      P = atoi(argv[1]);
+
    double total_time_start;
    double total_time_end;
    omp_set_num_threads(P);
    total_time_start = mysecond();
-   printf("Initialization time start %f\n", total_time_start);
+   printf("Execution time start %f\n", total_time_start);
 #  pragma omp parallel shared(allnodes) //Initialization
    {
       int i;
@@ -68,26 +76,12 @@ int main()
       int temp;
       int logP = ceil(log2(P));
       i = omp_get_thread_num();
-      //printf("Thread %d\n", i);
-/*#     pragma omp single
-      {
-         for (x = 0; x < P; x++)
-         {
-            for (r = 0; r < 2; r++)
-            {
-               for (k = 0; k < logP; k++)
-               {
-                  allnodes[x].myflags[r][k] = 0;
-               }
-            }
-         }
-      }*/
+      
       for (r = 0; r < 2; r++)
       {
          for (k = 0; k < logP; k++)
          {
             temp = fmod((i + pow(2, k)), P);
-//#           pragma omp critical
             for (j = 0; j < P; j++)
             {
 #              pragma omp single
@@ -101,10 +95,10 @@ int main()
          }
       }
 //   }
-   total_time_end = mysecond();
+//   total_time_end = mysecond();
 //   printf("Initialization ended at %f\n", total_time_end);
-   total_time_start = mysecond();
-   printf("Execution time start %f\n", total_time_start);
+//   total_time_start = mysecond();
+//   printf("Execution time start %f\n", total_time_start);
 //#  pragma omp parallel shared(allnodes)
 //   {
       dissemination_barrier();
