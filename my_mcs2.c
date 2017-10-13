@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/time.h>
 
 typedef struct treenode
 {
@@ -14,6 +13,8 @@ typedef struct treenode
 	int wakeuptreeparent;
 	int childpointer[2];
 } mcsnode;
+
+
 
 static mcsnode *node;
 
@@ -55,6 +56,7 @@ void mcs_init(int n_proc, int rank)
 
 }
 
+
 void mcs_barrier(int n_proc, int rank) 
 {
 	int i, tag=1;
@@ -63,19 +65,13 @@ void mcs_barrier(int n_proc, int rank)
 	for (i=0; i<4; i++) 
 	{
 		if (node->havechild[i]==1)
-		{
 			MPI_Recv(&data, 1, MPI_BYTE, node->childnotready[i], tag, MPI_COMM_WORLD, &status);
-			
-		}
-		
 	}
 
 	if (rank!=0) 
 	{
-		//printf("process %d arrived at the barrier\n", rank);		
 		MPI_Send(&data, 1, MPI_BYTE, node->arrivaltreeparent, tag, MPI_COMM_WORLD);
 		MPI_Recv(&data, 1, MPI_BYTE, node->wakeuptreeparent, tag, MPI_COMM_WORLD, &status); 
-		//printf("process %d exited the barrier\n", rank);
 	}
 	
 	for (i=0; i<2; i++)	
@@ -83,7 +79,6 @@ void mcs_barrier(int n_proc, int rank)
 		if (node->childpointer[i]!=-1)
 		{
 			MPI_Send(&data, 1, MPI_BYTE, node->childpointer[i], tag, MPI_COMM_WORLD);
-			
 		}
 		
 	}

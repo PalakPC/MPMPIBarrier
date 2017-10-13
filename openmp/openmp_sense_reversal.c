@@ -8,6 +8,12 @@
 # include <sys/time.h>
 # include <stdlib.h>
 
+typedef struct
+{
+   double avg_time_spent;
+   double total_time_spent;
+} Measures;
+
 double mysecond()
 {
    struct timeval tp;
@@ -42,12 +48,12 @@ void sense_reversal_barrier(int THREAD_NUM, int *count, int *sense, int barrier,
    printf("Thread %d out of barrier %d\n", thread, barrier);
 }
 
-double sense_reversal_init(int THREAD_NUM, int barrier, int *count, int *sense)
+Measures sense_reversal_init(int THREAD_NUM, int barrier, int *count, int *sense)
 {
    int local_sense;
-   double avg;
-   double start_time;
-   double end_time;
+   double overall_start_time;
+   double overall_end_time;
+   Measures mes;
 
    if (barrier % 2 == 0)
       local_sense = 1;
@@ -55,6 +61,7 @@ double sense_reversal_init(int THREAD_NUM, int barrier, int *count, int *sense)
       local_sense = 0;
 
    omp_set_num_threads(THREAD_NUM);
+   overall_start_time = mysecond();
 #  pragma omp parallel shared(count, sense)
    {
       int thread;
@@ -66,12 +73,17 @@ double sense_reversal_init(int THREAD_NUM, int barrier, int *count, int *sense)
       sense_reversal_barrier(THREAD_NUM, count, sense, barrier, local_sense);
       end_time = mysecond();
       printf("Thread %d spent %f in barrier %d\n", thread, (end_time - start_time), barrier);
-      avg = avg + (end_time - start_time);
+      mes.avg_time_spent = mes.avg_time_spent + (end_time - start_time);
    }
 
-   avg = avg / THREAD_NUM;
-   printf("\nAverage time spent by a thread in barrier %d: %f\n\n", barrier, avg);
-   return avg;
+   overall_end_time = mysecond();
+   mes.total_time_spent = overall_end_time - overall_start_time;
+   mes.avg_time_spent = mes.avg_time_spent / THREAD_NUM;
+
+   printf("\nTotal time spent in barrier %d: %f\n", barrier, mes.total_time_spent);
+   printf("Average time spent by a thread in barrier %d: %f\n\n", barrier, mes.avg_time_spent);
+
+   return mes;
 }
 
 int main(int argc, char ** argv)
@@ -81,11 +93,12 @@ int main(int argc, char ** argv)
    int i;
    int count;
    int sense;
-   double avg;
+   Measures retval;
+   Measures overall;
 
    if (argc != 3)
    {
-      printf("Error, invalid number of arguments\nProper usage: ./openmp_sense_reversal_per_thread <number of barriers> <number of threads>\n");
+      printf("Error, invalid number of arguments\nProper usage: ./openmp_sense_reversal <number of barriers> <number of threads>\n");
       exit(-1);
    }
    else
@@ -96,15 +109,21 @@ int main(int argc, char ** argv)
 
    count = THREAD_NUM;
    sense = 1;
-   avg = 0;
+   overall.avg_time_spent = 0;
+   overall.total_time_spent = 0;
 
    for (i = 0; i < BARRIER_NUM; ++i)
    {
-      avg = avg + sense_reversal_init(THREAD_NUM, i, &count, &sense);
+      retval = sense_reversal_init(THREAD_NUM, i, &count, &sense);
+      overall.avg_time_spent += retval.avg_time_spent;
+      overall.total_time_spent += retval.total_time_spent;
    }
 
-   avg = avg / BARRIER_NUM;
+   overall.avg_time_spent /= BARRIER_NUM;
+   overall.total_time_spent /= BARRIER_NUM;
 
-   printf("Overall average time spent by a thread in a barrier: %f\n", avg);
+   printf("Overall average time spent by a thread in a barrier: %f\n", overall.avg_time_spent);
+   printf("Overall average time spent in a barrier: %f\n", overall.total_time_spent);
+
    return 0;
 }

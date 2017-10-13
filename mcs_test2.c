@@ -3,18 +3,16 @@
 #include <stdbool.h>
 #include <mpi.h>
 #include <sys/time.h>
-
+//#include <mcs.h>
 
 void mcs_init(int num_threads, int rank);
 void mcs_barrier(int num_threads, int rank);
 void finalize();
 
 
-double mysecond()
+double timeduration(struct timeval t1, struct timeval t2)
 {
-   struct timeval tp;
-   gettimeofday(&tp, NULL);
-   return ((double) tp.tv_sec + (double) tp.tv_usec / 1.e6);
+	return (t2.tv_sec-t1.tv_sec)*1000000+(t2.tv_usec-t1.tv_usec);
 }
 
 int main(int argc, char **argv)
@@ -37,25 +35,22 @@ int main(int argc, char **argv)
 
 	mcs_init(numberofprocess, rank);
 	
-	int j, i=0;
-	double start_time, end_time, avg;
+	int j;
+	struct timeval t1, t2;
+	double duration=0.0;
 	printf("process %d is working\n", rank);
-	avg = 0.0;		
-	//start_time = mysecond();
+	gettimeofday(&t1,NULL);
 	for (j=0; j<iterations; j++) 
 	{
-		avg = 0.0;
-		start_time = mysecond();
 		mcs_barrier(numberofprocess,rank);
-		end_time = mysecond();
-		//printf("time for barrier no %d for process rank %d is %f\n", j, rank, (end_time - start_time));
-		avg = avg + (end_time - start_time);
 	}
-	//end_time = mysecond();
-	//printf("time for barrier no %d for process rank %d is %f\n", j, rank, (end_time - start_time));	
-	printf("The average time for %d process is %f\n", rank, avg);
+	gettimeofday(&t2,NULL);
 
 	finalize();
-        MPI_Finalize();
+
+	duration = timeduration(t1,t2);
+	printf("average time in %d rounds on %d process is %f\n", iterations, rank, duration);
+	
+	MPI_Finalize();
 	return 0;
 }
