@@ -59,7 +59,7 @@ void dissemination_barrier(int logP, flags *allnodes, int barrier)
    printf("Thread %d out of barrier %d\n", t, barrier);
 }
 
-double dissemination_init(int THREAD_NUM, int barrier)
+void dissemination_init(int THREAD_NUM, int barrier)
 {
    int i;
    int j;
@@ -68,10 +68,10 @@ double dissemination_init(int THREAD_NUM, int barrier)
    int P;
    int temp;
    int logP;
-   double start_time;
-   double end_time;
+   double avg;
    flags allnodes[MAX_P];
 
+   avg = 0;
    P = THREAD_NUM;
    logP = ceil(log2(P));
    
@@ -95,15 +95,22 @@ double dissemination_init(int THREAD_NUM, int barrier)
    }
 
    omp_set_num_threads(P);
-   start_time = mysecond();
 #  pragma omp parallel shared(allnodes) //Initialization
    {
+      int thread;
+      double start_time;
+      double end_time;
+
+      thread = omp_get_thread_num();
+      start_time = mysecond();
       dissemination_barrier(logP, allnodes, barrier);
+      end_time = mysecond();
+      printf("Thread %d spent %f in barrier %d\n", thread, (end_time - start_time), barrier);
+      avg = avg + (end_time - start_time);
    }
 
-   end_time = mysecond();
-   printf("\nTime in spent in barrier %d: %f\n\n", barrier, (end_time - start_time));
-   return (end_time - start_time);
+   avg = avg / THREAD_NUM;
+   printf("\nAverage time in spent in barrier %d: %f\n\n", barrier, avg);
 }
 
 int main(int argc, char **argv)
@@ -111,7 +118,6 @@ int main(int argc, char **argv)
    int BARRIER_NUM;
    int THREAD_NUM;
    int i;
-   double avg;
 
    if (argc != 3)
    {
@@ -124,15 +130,9 @@ int main(int argc, char **argv)
       THREAD_NUM = atoi(argv[2]);
    }
 
-   avg = 0;
-
    for (i = 0; i < BARRIER_NUM; i++)
    {
-      avg = avg + dissemination_init(THREAD_NUM, i);
+      dissemination_init(THREAD_NUM, i);
    }
-
-   avg = avg / BARRIER_NUM;
-
-   printf("\nAverage time in spent in barrier: %f\n", avg);
    return 0;
 }

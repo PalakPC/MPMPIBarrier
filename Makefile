@@ -4,4 +4,4 @@ P = 1
 .PHONY: runstream
 
 runstream:
-	$(CC) $(CFLAGS) -o openmp_sense_reversal -fopenmp openmp_sense_reversal.c
+	$(CC) $(CFLAGS) -o openmp_dissemination -fopenmp openmp_disseminated.c -lm
