@@ -42,12 +42,16 @@ void dissemination_barrier(int logP, flags *allnodes, int barrier)
    printf("Thread %d in barrier %d\n", t, barrier);
 
 #  pragma omp critical
+   {
       localflags = allnodes + t;
+   }
 
    for (instance = 0; instance < logP; instance++)
    {
 #     pragma omp critical
+      {
          *localflags->partnerflags[parity][instance] = sense;
+      }
       while (localflags->myflags[parity][instance] != sense);
    }
 
@@ -115,7 +119,7 @@ int main(int argc, char **argv)
 
    if (argc != 3)
    {
-      printf("Error, no argument");
+      printf("Error, invalid number of  arguments\nProper usage: ./openmp_disseminated_per_barrier <number of barriers> <number of threads>\n");
       exit(-1);
    }
    else
@@ -133,6 +137,6 @@ int main(int argc, char **argv)
 
    avg = avg / BARRIER_NUM;
 
-   printf("\nAverage time in spent in barrier: %f\n", avg);
+   printf("Overall average time spent in a barrier: %f\n", avg);
    return 0;
 }

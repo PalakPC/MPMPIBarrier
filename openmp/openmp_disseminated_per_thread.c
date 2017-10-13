@@ -6,10 +6,8 @@
 # include <omp.h>
 # include <stdio.h>
 # include <sys/time.h>
-# include <time.h>
 # include <stdlib.h>
 # include <math.h>
-# include <unistd.h>
 
 # define MAX_LOGP 3  //Maximum number of threads is 8, so maximum log2(P) will be 3
 # define MAX_P 8
@@ -42,24 +40,28 @@ void dissemination_barrier(int logP, flags *allnodes, int barrier)
    printf("Thread %d in barrier %d\n", t, barrier);
 
 #  pragma omp critical
+   {
       localflags = allnodes + t;
+   }
 
    for (instance = 0; instance < logP; instance++)
    {
 #     pragma omp critical
+      {
          *localflags->partnerflags[parity][instance] = sense;
+      }
       while (localflags->myflags[parity][instance] != sense);
    }
 
    if (parity == 1)
       sense = !sense;
-   
+
    parity = 1 - parity;
 
    printf("Thread %d out of barrier %d\n", t, barrier);
 }
 
-void dissemination_init(int THREAD_NUM, int barrier)
+double dissemination_init(int THREAD_NUM, int barrier)
 {
    int i;
    int j;
@@ -74,7 +76,7 @@ void dissemination_init(int THREAD_NUM, int barrier)
    avg = 0;
    P = THREAD_NUM;
    logP = ceil(log2(P));
-   
+
    for (r = 0; r < 2; r++)
    {
       for (k = 0; k < logP; k++)
@@ -110,7 +112,8 @@ void dissemination_init(int THREAD_NUM, int barrier)
    }
 
    avg = avg / THREAD_NUM;
-   printf("\nAverage time in spent in barrier %d: %f\n\n", barrier, avg);
+   printf("\nAverage time in spent by a thread in barrier %d: %f\n\n", barrier, avg);
+   return avg;
 }
 
 int main(int argc, char **argv)
@@ -118,10 +121,11 @@ int main(int argc, char **argv)
    int BARRIER_NUM;
    int THREAD_NUM;
    int i;
+   double avg;
 
    if (argc != 3)
    {
-      printf("Error, no argument");
+      printf("Error, invalid number of arguments\nProper usage: ./openmp_disseminated_per_thread <number of barriers> <number of threads>\n");
       exit(-1);
    }
    else
@@ -130,9 +134,15 @@ int main(int argc, char **argv)
       THREAD_NUM = atoi(argv[2]);
    }
 
+   avg = 0;
+
    for (i = 0; i < BARRIER_NUM; i++)
    {
-      dissemination_init(THREAD_NUM, i);
+      avg = avg + dissemination_init(THREAD_NUM, i);
    }
+
+   avg = avg / BARRIER_NUM;
+
+   printf("Overall average time spent by thread in a barrier: %f\n", avg);
    return 0;
 }
