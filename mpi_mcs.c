@@ -1,8 +1,13 @@
-# include <math.h>
-# include <sys/time.h>
+/* CS 6210 - Fall 2017
+ * MCS Barrier
+ * Palak Choudhary
+ */
+
+# include <mpi.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <mpi.h>
+# include <sys/time.h>
+# include <math.h>
 # include <unistd.h>
 
 # define W_ARY 2
@@ -33,7 +38,6 @@ double mysecond()
 
 void mcs_barrier(treenode *nodes, int proc_num, int barrier, int rank, int sense)
 {
-   sleep(10);
    int i;
    int buffer;
    int buffer2;
@@ -41,15 +45,12 @@ void mcs_barrier(treenode *nodes, int proc_num, int barrier, int rank, int sense
    MPI_Status status_1;
    MPI_Status status_2;
 
-   printf("Process %d in barrier %d\n", rank, barrier);
 
    for (i = 0; i < A_ARY; ++i)
    {
       if (((A_ARY * rank) + i + 1) < proc_num)
       {
-         printf("%d has childnotready %d as %d\n", rank, i, (nodes + rank)->childnotready[i]); 
          MPI_Recv(&((nodes + rank)->childnotready[i]), 1, MPI_INT, ((rank * A_ARY) + i + 1), 1, MPI_COMM_WORLD, &status_1);
-         printf("%d got childnotready %d as %d from %d\n", rank, i, ((nodes + rank)->childnotready[i]), ((rank * A_ARY) + i + 1));
       }
    }
    
@@ -60,18 +61,14 @@ void mcs_barrier(treenode *nodes, int proc_num, int barrier, int rank, int sense
 
    if (rank != 0)
    {
-      //*((nodes + rank)->parentpointer) = 0;
       buffer = 0;
       floor_val = floor((double)((rank - 1) / A_ARY));
       MPI_Send(&buffer, 1, MPI_INT, floor((double)((rank - 1) / A_ARY)), 1, MPI_COMM_WORLD);
-      printf("%d sent parentpointer %d to %d\n", rank, 0, floor_val);
    }
    
    if (rank != 0)
    {
-      printf("%d has parentsense as %d\n", rank, (nodes + rank)->parentsense); 
       MPI_Recv(&((nodes + rank)->parentsense), 1, MPI_INT, ((rank - 1) / W_ARY), 2, MPI_COMM_WORLD, &status_2);
-      printf("%d got parentsense %d from %d\n", rank, ((nodes + rank)->parentsense), ((rank - 1) / W_ARY));
 
    }
 
@@ -81,12 +78,10 @@ void mcs_barrier(treenode *nodes, int proc_num, int barrier, int rank, int sense
       {
          buffer2 = sense;
          MPI_Send(&buffer2, 1, MPI_INT, ((W_ARY * rank) + i + 1), 2, MPI_COMM_WORLD);
-         printf("%d sent childpointer %d as %d to %d\n", rank, i, sense, ((W_ARY * rank) + i + 1));
       }
    }
    
    sense = !sense;
-   printf("Process %d out of barrier %d\n", rank, barrier);
 }
 
 void mcs_init(treenode *nodes, int proc_num, int i, int sense)
@@ -134,8 +129,6 @@ void mcs_init(treenode *nodes, int proc_num, int i, int sense)
    }
 
    (nodes + i)->parentsense = 0;
-
-//   mcs_barrier(nodes, proc_num, barrier, i, sense);
 }
 
 int main(int argc, char **argv)
@@ -145,6 +138,15 @@ int main(int argc, char **argv)
    int rank;
    int proc_num;
    int sense;
+   double start_time;
+   double end_time;
+   double time_diff;
+   double global_start_time;
+   double global_end_time;
+   double global_time_diff;
+   double total_time;
+   double overall_total_time;
+   double overall_avg_time;
 
    MPI_Init(&argc, &argv);
    MPI_Comm_size(MPI_COMM_WORLD, &proc_num);
@@ -162,10 +164,14 @@ int main(int argc, char **argv)
       BARRIER_NUM = atoi(argv[1]);
    }
 
+   overall_avg_time = 0;
+   overall_total_time = 0;
+
    mcs_init(nodes, proc_num, rank, sense); 
 
    for(i = 0; i < BARRIER_NUM; ++i)
    {
+      sleep(10);
       if ((i % 2) == 0)
       {
          sense = 1;
@@ -174,9 +180,40 @@ int main(int argc, char **argv)
       {
          sense = 0;
       }
+      
+      start_time = mysecond();
+      printf("\nProcess %d in barrier %d\n", rank, i);
       mcs_barrier(nodes, proc_num, i, rank, sense);
+      printf("Process %d out of barrier %d\n", rank, i);
+      end_time = mysecond();
+      
+      time_diff = end_time - start_time;
+      printf("Process %d spent %f in barrier %d\n", rank, time_diff, i);
+      
+      MPI_Reduce(&start_time, &global_start_time, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
+      MPI_Reduce(&end_time, &global_end_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+      MPI_Reduce(&time_diff, &global_time_diff, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+      
+      if (rank == 0)
+      {
+         total_time = global_end_time - global_start_time;
+         overall_total_time += total_time;
+         printf("\nTotal time spent in barrier %d: %f\n", i, total_time);
+         global_time_diff /= proc_num;
+         overall_avg_time += global_time_diff;
+         printf("Average time spent by a thread in barrier %d: %f\n\n", i, global_time_diff);
+      }
    }
 
+   if (rank == 0)
+   {
+      overall_avg_time /= BARRIER_NUM;
+      overall_total_time /= BARRIER_NUM;
+
+      printf("Overall average time spent by a process in a barrier: %f\n", overall_avg_time);
+      printf("Overall average time spent in a barrier: %f\n", overall_total_time);
+   }
+   
    MPI_Finalize();
    return 0;
 }

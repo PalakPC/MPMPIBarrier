@@ -5,8 +5,8 @@
 
 # include <omp.h>
 # include <stdio.h>
-# include <sys/time.h>
 # include <stdlib.h>
+# include <sys/time.h>
 # include <math.h>
 
 # define MAX_LOGP 3  //Maximum number of threads is 8, so maximum log2(P) will be 3
