@@ -41,8 +41,10 @@ int main(int argc, char **argv)
 	for (j=0; j<iterations; j++) 
 	{
 		avg = 0.0;
-		start_time = mysecond();		
+		start_time = mysecond();
+		printf("Entering tournament barrier mpi for barrier :%d by process no %d\n", j, rank);		
 		tournament_barrier(rank, numberofprocess, max_round);
+		printf("Exiting tournament barrier mpi for barrier :%d by process no %d\n", j, rank);
 		end_time = mysecond();
 		//printf("time for barrier no %d for process rank %d is %f\n", j, rank, (end_time - start_time));
 		avg = avg + (end_time - start_time);
