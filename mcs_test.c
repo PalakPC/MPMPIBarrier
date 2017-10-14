@@ -46,9 +46,9 @@ int main(int argc, char **argv)
 	{
 		avg = 0.0;
 		start_time = mysecond();
-		printf("Entering mcs barrier mpi for barrier :%d by process no %d\n", j, rank);
+		printf("Entering mcs for barrier:%d by process no %d\n", j, rank);
 		mcs_barrier(numberofprocess,rank);
-		printf("Exiting mcs barrier mpi for barrier :%d by process no %d\n", j, rank);
+		printf("Exiting mcs for barrier:%d by process no %d\n", j, rank);
 		end_time = mysecond();
 		//printf("time for barrier no %d for process rank %d is %f\n", j, rank, (end_time - start_time));
 		avg = avg + (end_time - start_time);

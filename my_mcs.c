@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/time.h>
+
 
 typedef struct treenode
 {
@@ -21,7 +21,7 @@ void mcs_init(int n_proc, int rank)
 {
 	node = (mcsnode *) malloc(sizeof(mcsnode));
 	int i;
-	for (i=0; i<4; i++) 
+	for (i=0; i<4; i++) // 4-ary arrival tree
 	{
 		if (4*rank+i+1<n_proc) 
 		{
@@ -39,13 +39,15 @@ void mcs_init(int n_proc, int rank)
 	{
 		node->arrivaltreeparent = (rank-1)/4;
 		node->wakeuptreeparent = (rank-1)/2;
+
 	}
 	else 
 	{
 		node->arrivaltreeparent = -1;
 		node->wakeuptreeparent = -1;
 	}
-	for (i=0; i<2; i++)	
+	
+	for (i=0; i<2; i++)	// binary wake up tree
 	{
 		if (2*rank+i+1<n_proc)
 			node->childpointer[i] = 2*rank+i+1;
@@ -55,34 +57,32 @@ void mcs_init(int n_proc, int rank)
 
 }
 
-void mcs_barrier(int n_proc, int rank) 
+
+void mcs_barrier(int rank) 
 {
 	int i, tag=1;
-	unsigned char data=1;
+	int data=1;
 	MPI_Status status;
 	for (i=0; i<4; i++) 
 	{
 		if (node->havechild[i]==1)
 		{
-			MPI_Recv(&data, 1, MPI_BYTE, node->childnotready[i], tag, MPI_COMM_WORLD, &status);
-			
+			MPI_Recv(&data, 1, MPI_INT, node->childnotready[i], tag, MPI_COMM_WORLD, &status);	
 		}
 		
 	}
 
 	if (rank!=0) 
-	{
-		//printf("process %d arrived at the barrier\n", rank);		
-		MPI_Send(&data, 1, MPI_BYTE, node->arrivaltreeparent, tag, MPI_COMM_WORLD);
-		MPI_Recv(&data, 1, MPI_BYTE, node->wakeuptreeparent, tag, MPI_COMM_WORLD, &status); 
-		//printf("process %d exited the barrier\n", rank);
+	{	
+		MPI_Send(&data, 1, MPI_INT, node->arrivaltreeparent, tag, MPI_COMM_WORLD);
+		MPI_Recv(&data, 1, MPI_INT, node->wakeuptreeparent, tag, MPI_COMM_WORLD, &status);
 	}
 	
 	for (i=0; i<2; i++)	
 	{
 		if (node->childpointer[i]!=-1)
 		{
-			MPI_Send(&data, 1, MPI_BYTE, node->childpointer[i], tag, MPI_COMM_WORLD);
+			MPI_Send(&data, 1, MPI_INT, node->childpointer[i], tag, MPI_COMM_WORLD);
 			
 		}
 		
