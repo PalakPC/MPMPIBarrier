@@ -5,14 +5,7 @@
 #include <math.h>
 #include <sys/time.h>
 
-void tournament_barrier( int rank, int numprocs, int max_rnd);
-
-double mysecond()
-{
-   struct timeval tp;
-   gettimeofday(&tp, NULL);
-   return ((double) tp.tv_sec + (double) tp.tv_usec / 1.e6);
-}
+void tour_barrier( int rank, int numprocs, int max_rnd);
 
 int main(int argc, char **argv)
 {
@@ -41,11 +34,11 @@ int main(int argc, char **argv)
 	for (j=0; j<iterations; j++) 
 	{
 		avg = 0.0;
-		start_time = mysecond();
+		//start_time = mysecond();
 		printf("Entering tournament barrier mpi for barrier :%d by process no %d\n", j, rank);		
-		tournament_barrier(rank, numberofprocess, max_round);
+		tour_barrier(rank, numberofprocess, max_round);
 		printf("Exiting tournament barrier mpi for barrier :%d by process no %d\n", j, rank);
-		end_time = mysecond();
+		//end_time = mysecond();
 		//printf("time for barrier no %d for process rank %d is %f\n", j, rank, (end_time - start_time));
 		avg = avg + (end_time - start_time);
 	}
