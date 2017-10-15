@@ -1,6 +1,6 @@
 
 /* CS 6210 - Fall 2017
- * MCS Barrier
+ * Combined Barrier
  * Palak Choudhary
  */
 
@@ -139,7 +139,7 @@ void mcs_init(treenode *nodes, int proc_num, int i, int sense)
 
    (nodes + i)->parentsense = 0;
 }
-void dissemination_barrier(int logP, flags *allnodes, int barrier)
+void dissemination_barrier(int logP, flags *allnodes, int barrier, int rank)
 {
    int t;
    int parity;
@@ -151,7 +151,7 @@ void dissemination_barrier(int logP, flags *allnodes, int barrier)
    parity = 0;
    sense = 1;
 
-   printf("Thread %d in barrier %d\n", t, barrier);
+   printf("Thread %d of process %d in barrier %d\n", t, rank, barrier);
 
 #  pragma omp critical
    {
@@ -172,10 +172,10 @@ void dissemination_barrier(int logP, flags *allnodes, int barrier)
 
    parity = 1 - parity;
 
-   printf("Thread %d out of barrier %d\n", t, barrier);
+   printf("Thread %d of process %d out of barrier %d\n", t, rank, barrier);
 }
 
-Measures dissemination_init(int THREAD_NUM, int barrier)
+Measures dissemination_init(int THREAD_NUM, int barrier, int rank)
 {
    int i;
    int j;
@@ -221,7 +221,7 @@ Measures dissemination_init(int THREAD_NUM, int barrier)
 
       thread = omp_get_thread_num();
       start_time = mysecond();
-      dissemination_barrier(logP, allnodes, barrier);
+      dissemination_barrier(logP, allnodes, barrier, rank);
       end_time = mysecond();
       printf("Thread %d spent %f in barrier %d\n", thread, (end_time - start_time), barrier);
       mes.avg_time_spent = mes.avg_time_spent + (end_time - start_time);
@@ -279,7 +279,7 @@ int main(int argc, char **argv)
 
    for(i = 0; i < BARRIER_NUM; ++i)
    {
-      sleep(10);
+      sleep(1);
       if ((i % 2) == 0)
       {
          sense = 1;
@@ -291,7 +291,7 @@ int main(int argc, char **argv)
       
       start_time = mysecond();
       printf("\nProcess %d in barrier %d\n", rank, i);
-      dissemination_init(THREAD_NUM, i);
+      dissemination_init(THREAD_NUM, i, rank);
       mcs_barrier(nodes, proc_num, i, rank, sense);
       printf("Process %d out of barrier %d\n", rank, i);
       end_time = mysecond();
