@@ -28,8 +28,9 @@ int main(int argc, char **argv)
    int NUM_THREADS;
 
    /*
-    * Variables neede for timing measurements
+    * Variables needed for timing measurements
     */
+   int counter;
    double barrier_start_time; //Start time of a barrier
    double barrier_end_time;   //End time of a barrier
    double barrier_avg_time_spent;   //Average time a thread spent in a barrier
@@ -62,10 +63,15 @@ int main(int argc, char **argv)
 
    overall_avg_time_spent = 0;   //Initial value
    overall_total_time_spent = 0; //Initial value
+   
+   counter = 0;
+   barrier_avg_time_spent = 0;   //Initial value
+   barrier_start_time = DBL_MAX; //Maximum value for comparison
+   barrier_end_time = 0;   //Minimum value for comparison
 
    omp_set_num_threads(NUM_THREADS);   //Setting number of threads for parallel section
 
-#  pragma omp parallel shared(allnodes, barrier_avg_time_spent, barrier_start_time, barrier_end_time) //Parallel region start
+#  pragma omp parallel shared(allnodes, barrier_avg_time_spent, barrier_start_time, barrier_end_time, counter) //Parallel region start
    {
       /*
        * variables private to each thread
@@ -88,11 +94,6 @@ int main(int argc, char **argv)
 
       for (i = 0; i < NUM_BARRIERS; i++)
       {
-
-         barrier_avg_time_spent = 0;   //Initial value
-         barrier_start_time = DBL_MAX; //Maximum value for comparison
-         barrier_end_time = 0;   //Minimum value for comparison
-
 #        pragma omp single nowait//Only one thread should print this
          {
             printf("\nStats for barrier number: %d\n", i);
@@ -122,21 +123,33 @@ int main(int argc, char **argv)
          }
 
          thread_total_time_spent = thread_end_time - thread_start_time;
-         printf("%d\t%f\n", thread_num, thread_total_time_spent);
+         printf("%d\t%f\t%f\t%f\n", thread_num, thread_total_time_spent, thread_end_time, thread_start_time);
 
 #        pragma omp atomic //Atomic operation to ensure correctness
             barrier_avg_time_spent += thread_total_time_spent;
 
-#        pragma omp single nowait
+#        pragma omp critical
          {
-            barrier_total_time_spent = barrier_end_time - barrier_start_time;
-            barrier_avg_time_spent /= NUM_THREADS;
+            counter++;
+            if (counter == NUM_THREADS)
+            {
+               barrier_total_time_spent = barrier_end_time - barrier_start_time;
+               barrier_avg_time_spent /= NUM_THREADS;
 
-            printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_total_time_spent);
-            printf("Average time spent by a thread in barrier %d (in seconds): %f\n\n", i, barrier_avg_time_spent);
+               printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_total_time_spent);
+               printf("Average time spent by a thread in barrier %d (in seconds): %f\n\n", i, barrier_avg_time_spent);
 
-            overall_avg_time_spent += barrier_avg_time_spent;
-            overall_total_time_spent += barrier_total_time_spent;
+               overall_avg_time_spent += barrier_avg_time_spent;
+               overall_total_time_spent += barrier_total_time_spent;
+
+               /*
+                * Restting values
+                */
+               counter = 0;
+               barrier_avg_time_spent = 0;   //Initial value
+               barrier_start_time = DBL_MAX; //Maximum value for comparison
+               barrier_end_time = 0;   //Minimum value for comparison
+            }
          } 
       }  //All barriers done
    }  //Parallel region end
