@@ -1,0 +1,1002 @@
+Thread 0 in barrier 0
+Thread 1 in barrier 0
+Thread 1 out of barrier 0
+Thread 1 spent 0.000043 in barrier 0
+Thread 0 out of barrier 0
+Thread 0 spent 0.000066 in barrier 0
+
+Total time spent in barrier 0: 0.000201
+Average time spent by a thread in barrier 0: 0.000054
+
+Thread 1 in barrier 1
+Thread 0 in barrier 1
+Thread 0 out of barrier 1
+Thread 0 spent 0.000012 in barrier 1
+Thread 1 out of barrier 1
+Thread 1 spent 0.000021 in barrier 1
+
+Total time spent in barrier 1: 0.000030
+Average time spent by a thread in barrier 1: 0.000044
+
+Thread 0 in barrier 2
+Thread 1 in barrier 2
+Thread 1 out of barrier 2
+Thread 1 spent 0.000014 in barrier 2
+Thread 0 out of barrier 2
+Thread 0 spent 0.000017 in barrier 2
+
+Total time spent in barrier 2: 0.000020
+Average time spent by a thread in barrier 2: 0.000037
+
+Thread 0 in barrier 3
+Thread 1 in barrier 3
+Thread 1 out of barrier 3
+Thread 0 out of barrier 3
+Thread 0 spent 0.000010 in barrier 3
+Thread 1 spent 0.000008 in barrier 3
+
+Total time spent in barrier 3: 0.000019
+Average time spent by a thread in barrier 3: 0.000028
+
+Thread 0 in barrier 4
+Thread 1 in barrier 4
+Thread 1 out of barrier 4
+Thread 0 out of barrier 4
+Thread 1 spent 0.000008 in barrier 4
+Thread 0 spent 0.000008 in barrier 4
+
+Total time spent in barrier 4: 0.000020
+Average time spent by a thread in barrier 4: 0.000022
+
+Thread 0 in barrier 5
+Thread 1 in barrier 5
+Thread 1 out of barrier 5
+Thread 0 out of barrier 5
+Thread 0 spent 0.000006 in barrier 5
+Thread 1 spent 0.000002 in barrier 5
+
+Total time spent in barrier 5: 0.000011
+Average time spent by a thread in barrier 5: 0.000015
+
+Thread 0 in barrier 6
+Thread 1 in barrier 6
+Thread 1 out of barrier 6
+Thread 0 out of barrier 6
+Thread 1 spent 0.000007 in barrier 6
+Thread 0 spent 0.000007 in barrier 6
+
+Total time spent in barrier 6: 0.000016
+Average time spent by a thread in barrier 6: 0.000015
+
+Thread 0 in barrier 7
+Thread 1 in barrier 7
+Thread 1 out of barrier 7
+Thread 0 out of barrier 7
+Thread 0 spent 0.000010 in barrier 7
+Thread 1 spent 0.000008 in barrier 7
+
+Total time spent in barrier 7: 0.000023
+Average time spent by a thread in barrier 7: 0.000016
+
+Thread 0 in barrier 8
+Thread 1 in barrier 8
+Thread 1 out of barrier 8
+Thread 1 spent 0.000006 in barrier 8
+Thread 0 out of barrier 8
+Thread 0 spent 0.000009 in barrier 8
+
+Total time spent in barrier 8: 0.000012
+Average time spent by a thread in barrier 8: 0.000016
+
+Thread 0 in barrier 9
+Thread 1 in barrier 9
+Thread 1 out of barrier 9
+Thread 0 out of barrier 9
+Thread 1 spent 0.000007 in barrier 9
+Thread 0 spent 0.000009 in barrier 9
+
+Total time spent in barrier 9: 0.000018
+Average time spent by a thread in barrier 9: 0.000016
+
+Thread 0 in barrier 10
+Thread 1 in barrier 10
+Thread 1 out of barrier 10
+Thread 1 spent 0.000032 in barrier 10
+Thread 0 out of barrier 10
+Thread 0 spent 0.000038 in barrier 10
+
+Total time spent in barrier 10: 0.000041
+Average time spent by a thread in barrier 10: 0.000043
+
+Thread 0 in barrier 11
+Thread 1 in barrier 11
+Thread 1 out of barrier 11
+Thread 1 spent 0.000005 in barrier 11
+Thread 0 out of barrier 11
+Thread 0 spent 0.000008 in barrier 11
+
+Total time spent in barrier 11: 0.000011
+Average time spent by a thread in barrier 11: 0.000028
+
+Thread 0 in barrier 12
+Thread 1 in barrier 12
+Thread 1 out of barrier 12
+Thread 0 out of barrier 12
+Thread 1 spent 0.000004 in barrier 12
+Thread 0 spent 0.000004 in barrier 12
+
+Total time spent in barrier 12: 0.000013
+Average time spent by a thread in barrier 12: 0.000018
+
+Thread 0 in barrier 13
+Thread 1 in barrier 13
+Thread 1 out of barrier 13
+Thread 1 spent 0.000008 in barrier 13
+Thread 0 out of barrier 13
+Thread 0 spent 0.000012 in barrier 13
+
+Total time spent in barrier 13: 0.000016
+Average time spent by a thread in barrier 13: 0.000019
+
+Thread 1 in barrier 14
+Thread 0 in barrier 14
+Thread 0 out of barrier 14
+Thread 1 out of barrier 14
+Thread 1 spent 0.000013 in barrier 14
+Thread 0 spent 0.000009 in barrier 14
+
+Total time spent in barrier 14: 0.000019
+Average time spent by a thread in barrier 14: 0.000021
+
+Thread 0 in barrier 15
+Thread 1 in barrier 15
+Thread 1 out of barrier 15
+Thread 1 spent 0.000010 in barrier 15
+Thread 0 out of barrier 15
+Thread 0 spent 0.000013 in barrier 15
+
+Total time spent in barrier 15: 0.000016
+Average time spent by a thread in barrier 15: 0.000022
+
+Thread 0 in barrier 16
+Thread 1 in barrier 16
+Thread 1 out of barrier 16
+Thread 1 spent 0.000006 in barrier 16
+Thread 0 out of barrier 16
+Thread 0 spent 0.000008 in barrier 16
+
+Total time spent in barrier 16: 0.000011
+Average time spent by a thread in barrier 16: 0.000018
+
+Thread 0 in barrier 17
+Thread 1 in barrier 17
+Thread 1 out of barrier 17
+Thread 1 spent 0.000006 in barrier 17
+Thread 0 out of barrier 17
+Thread 0 spent 0.000008 in barrier 17
+
+Total time spent in barrier 17: 0.000011
+Average time spent by a thread in barrier 17: 0.000016
+
+Thread 0 in barrier 18
+Thread 1 in barrier 18
+Thread 1 out of barrier 18
+Thread 0 out of barrier 18
+Thread 1 spent 0.000006 in barrier 18
+Thread 0 spent 0.000007 in barrier 18
+
+Total time spent in barrier 18: 0.000015
+Average time spent by a thread in barrier 18: 0.000014
+
+Thread 0 in barrier 19
+Thread 1 in barrier 19
+Thread 1 out of barrier 19
+Thread 0 out of barrier 19
+Thread 0 spent 0.000006 in barrier 19
+Thread 1 spent 0.000002 in barrier 19
+
+Total time spent in barrier 19: 0.000011
+Average time spent by a thread in barrier 19: 0.000011
+
+Thread 0 in barrier 20
+Thread 1 in barrier 20
+Thread 1 out of barrier 20
+Thread 1 spent 0.000009 in barrier 20
+Thread 0 out of barrier 20
+Thread 0 spent 0.000012 in barrier 20
+
+Total time spent in barrier 20: 0.000015
+Average time spent by a thread in barrier 20: 0.000016
+
+Thread 0 in barrier 21
+Thread 1 in barrier 21
+Thread 1 out of barrier 21
+Thread 0 out of barrier 21
+Thread 1 spent 0.000009 in barrier 21
+Thread 0 spent 0.000009 in barrier 21
+
+Total time spent in barrier 21: 0.000018
+Average time spent by a thread in barrier 21: 0.000017
+
+Thread 0 in barrier 22
+Thread 1 in barrier 22
+Thread 1 out of barrier 22
+Thread 0 out of barrier 22
+Thread 0 spent 0.000011 in barrier 22
+Thread 1 spent 0.000007 in barrier 22
+
+Total time spent in barrier 22: 0.000015
+Average time spent by a thread in barrier 22: 0.000017
+
+Thread 0 in barrier 23
+Thread 1 in barrier 23
+Thread 1 out of barrier 23
+Thread 0 out of barrier 23
+Thread 0 spent 0.000006 in barrier 23
+Thread 1 spent 0.000003 in barrier 23
+
+Total time spent in barrier 23: 0.000011
+Average time spent by a thread in barrier 23: 0.000013
+
+Thread 0 in barrier 24
+Thread 1 in barrier 24
+Thread 1 out of barrier 24
+Thread 0 out of barrier 24
+Thread 0 spent 0.000006 in barrier 24
+Thread 1 spent 0.000002 in barrier 24
+
+Total time spent in barrier 24: 0.000011
+Average time spent by a thread in barrier 24: 0.000011
+
+Thread 0 in barrier 25
+Thread 1 in barrier 25
+Thread 1 out of barrier 25
+Thread 0 out of barrier 25
+Thread 0 spent 0.000005 in barrier 25
+Thread 1 spent 0.000002 in barrier 25
+
+Total time spent in barrier 25: 0.000011
+Average time spent by a thread in barrier 25: 0.000009
+
+Thread 0 in barrier 26
+Thread 1 in barrier 26
+Thread 1 out of barrier 26
+Thread 1 spent 0.000005 in barrier 26
+Thread 0 out of barrier 26
+Thread 0 spent 0.000008 in barrier 26
+
+Total time spent in barrier 26: 0.000011
+Average time spent by a thread in barrier 26: 0.000011
+
+Thread 0 in barrier 27
+Thread 1 in barrier 27
+Thread 1 out of barrier 27
+Thread 0 out of barrier 27
+Thread 0 spent 0.000006 in barrier 27
+Thread 1 spent 0.000002 in barrier 27
+
+Total time spent in barrier 27: 0.000011
+Average time spent by a thread in barrier 27: 0.000009
+
+Thread 0 in barrier 28
+Thread 1 in barrier 28
+Thread 1 out of barrier 28
+Thread 0 out of barrier 28
+Thread 0 spent 0.000010 in barrier 28
+Thread 1 spent 0.000007 in barrier 28
+
+Total time spent in barrier 28: 0.000014
+Average time spent by a thread in barrier 28: 0.000013
+
+Thread 0 in barrier 29
+Thread 1 in barrier 29
+Thread 1 out of barrier 29
+Thread 1 spent 0.000030 in barrier 29
+Thread 0 out of barrier 29
+Thread 0 spent 0.000037 in barrier 29
+
+Total time spent in barrier 29: 0.000040
+Average time spent by a thread in barrier 29: 0.000040
+
+Thread 0 in barrier 30
+Thread 1 in barrier 30
+Thread 1 out of barrier 30
+Thread 1 spent 0.000008 in barrier 30
+Thread 0 out of barrier 30
+Thread 0 spent 0.000011 in barrier 30
+
+Total time spent in barrier 30: 0.000015
+Average time spent by a thread in barrier 30: 0.000030
+
+Thread 0 in barrier 31
+Thread 1 in barrier 31
+Thread 1 out of barrier 31
+Thread 1 spent 0.000005 in barrier 31
+Thread 0 out of barrier 31
+Thread 0 spent 0.000008 in barrier 31
+
+Total time spent in barrier 31: 0.000011
+Average time spent by a thread in barrier 31: 0.000021
+
+Thread 0 in barrier 32
+Thread 1 in barrier 32
+Thread 1 out of barrier 32
+Thread 1 spent 0.000006 in barrier 32
+Thread 0 out of barrier 32
+Thread 0 spent 0.000009 in barrier 32
+
+Total time spent in barrier 32: 0.000012
+Average time spent by a thread in barrier 32: 0.000018
+
+Thread 0 in barrier 33
+Thread 1 in barrier 33
+Thread 1 out of barrier 33
+Thread 1 spent 0.000006 in barrier 33
+Thread 0 out of barrier 33
+Thread 0 spent 0.000009 in barrier 33
+
+Total time spent in barrier 33: 0.000012
+Average time spent by a thread in barrier 33: 0.000017
+
+Thread 0 in barrier 34
+Thread 1 in barrier 34
+Thread 1 out of barrier 34
+Thread 1 spent 0.000005 in barrier 34
+Thread 0 out of barrier 34
+Thread 0 spent 0.000008 in barrier 34
+
+Total time spent in barrier 34: 0.000011
+Average time spent by a thread in barrier 34: 0.000015
+
+Thread 0 in barrier 35
+Thread 1 in barrier 35
+Thread 1 out of barrier 35
+Thread 1 spent 0.000006 in barrier 35
+Thread 0 out of barrier 35
+Thread 0 spent 0.000008 in barrier 35
+
+Total time spent in barrier 35: 0.000012
+Average time spent by a thread in barrier 35: 0.000014
+
+Thread 0 in barrier 36
+Thread 1 in barrier 36
+Thread 1 out of barrier 36
+Thread 1 spent 0.000005 in barrier 36
+Thread 0 out of barrier 36
+Thread 0 spent 0.000009 in barrier 36
+
+Total time spent in barrier 36: 0.000011
+Average time spent by a thread in barrier 36: 0.000014
+
+Thread 0 in barrier 37
+Thread 1 in barrier 37
+Thread 1 out of barrier 37
+Thread 1 spent 0.000006 in barrier 37
+Thread 0 out of barrier 37
+Thread 0 spent 0.000008 in barrier 37
+
+Total time spent in barrier 37: 0.000011
+Average time spent by a thread in barrier 37: 0.000014
+
+Thread 0 in barrier 38
+Thread 1 in barrier 38
+Thread 1 out of barrier 38
+Thread 1 spent 0.000006 in barrier 38
+Thread 0 out of barrier 38
+Thread 0 spent 0.000009 in barrier 38
+
+Total time spent in barrier 38: 0.000014
+Average time spent by a thread in barrier 38: 0.000014
+
+Thread 0 in barrier 39
+Thread 1 in barrier 39
+Thread 1 out of barrier 39
+Thread 1 spent 0.000004 in barrier 39
+Thread 0 out of barrier 39
+Thread 0 spent 0.000007 in barrier 39
+
+Total time spent in barrier 39: 0.000011
+Average time spent by a thread in barrier 39: 0.000013
+
+Thread 1 in barrier 40
+Thread 0 in barrier 40
+Thread 0 out of barrier 40
+Thread 1 out of barrier 40
+Thread 0 spent 0.000008 in barrier 40
+Thread 1 spent 0.000009 in barrier 40
+
+Total time spent in barrier 40: 0.000021
+Average time spent by a thread in barrier 40: 0.000015
+
+Thread 0 in barrier 41
+Thread 1 in barrier 41
+Thread 1 out of barrier 41
+Thread 0 out of barrier 41
+Thread 1 spent 0.000007 in barrier 41
+Thread 0 spent 0.000008 in barrier 41
+
+Total time spent in barrier 41: 0.000019
+Average time spent by a thread in barrier 41: 0.000015
+
+Thread 0 in barrier 42
+Thread 1 in barrier 42
+Thread 1 out of barrier 42
+Thread 1 spent 0.000005 in barrier 42
+Thread 0 out of barrier 42
+Thread 0 spent 0.000008 in barrier 42
+
+Total time spent in barrier 42: 0.000011
+Average time spent by a thread in barrier 42: 0.000014
+
+Thread 0 in barrier 43
+Thread 1 in barrier 43
+Thread 1 out of barrier 43
+Thread 1 spent 0.000006 in barrier 43
+Thread 0 out of barrier 43
+Thread 0 spent 0.000008 in barrier 43
+
+Total time spent in barrier 43: 0.000010
+Average time spent by a thread in barrier 43: 0.000014
+
+Thread 0 in barrier 44
+Thread 1 in barrier 44
+Thread 1 out of barrier 44
+Thread 1 spent 0.000010 in barrier 44
+Thread 0 out of barrier 44
+Thread 0 spent 0.000013 in barrier 44
+
+Total time spent in barrier 44: 0.000016
+Average time spent by a thread in barrier 44: 0.000018
+
+Thread 0 in barrier 45
+Thread 1 in barrier 45
+Thread 1 out of barrier 45
+Thread 1 spent 0.000013 in barrier 45
+Thread 0 out of barrier 45
+Thread 0 spent 0.000016 in barrier 45
+
+Total time spent in barrier 45: 0.000020
+Average time spent by a thread in barrier 45: 0.000024
+
+Thread 0 in barrier 46
+Thread 1 in barrier 46
+Thread 1 out of barrier 46
+Thread 0 out of barrier 46
+Thread 0 spent 0.000006 in barrier 46
+Thread 1 spent 0.000003 in barrier 46
+
+Total time spent in barrier 46: 0.000011
+Average time spent by a thread in barrier 46: 0.000016
+
+Thread 0 in barrier 47
+Thread 1 in barrier 47
+Thread 1 out of barrier 47
+Thread 0 out of barrier 47
+Thread 0 spent 0.000006 in barrier 47
+Thread 1 spent 0.000002 in barrier 47
+
+Total time spent in barrier 47: 0.000011
+Average time spent by a thread in barrier 47: 0.000012
+
+Thread 0 in barrier 48
+Thread 1 in barrier 48
+Thread 1 out of barrier 48
+Thread 0 out of barrier 48
+Thread 0 spent 0.000006 in barrier 48
+Thread 1 spent 0.000002 in barrier 48
+
+Total time spent in barrier 48: 0.000011
+Average time spent by a thread in barrier 48: 0.000010
+
+Thread 0 in barrier 49
+Thread 1 in barrier 49
+Thread 1 out of barrier 49
+Thread 1 spent 0.000006 in barrier 49
+Thread 0 out of barrier 49
+Thread 0 spent 0.000008 in barrier 49
+
+Total time spent in barrier 49: 0.000011
+Average time spent by a thread in barrier 49: 0.000012
+
+Thread 0 in barrier 50
+Thread 1 in barrier 50
+Thread 1 out of barrier 50
+Thread 1 spent 0.000005 in barrier 50
+Thread 0 out of barrier 50
+Thread 0 spent 0.000008 in barrier 50
+
+Total time spent in barrier 50: 0.000011
+Average time spent by a thread in barrier 50: 0.000013
+
+Thread 0 in barrier 51
+Thread 1 in barrier 51
+Thread 1 out of barrier 51
+Thread 0 out of barrier 51
+Thread 0 spent 0.000006 in barrier 51
+Thread 1 spent 0.000003 in barrier 51
+
+Total time spent in barrier 51: 0.000012
+Average time spent by a thread in barrier 51: 0.000011
+
+Thread 0 in barrier 52
+Thread 1 in barrier 52
+Thread 1 out of barrier 52
+Thread 1 spent 0.000010 in barrier 52
+Thread 0 out of barrier 52
+Thread 0 spent 0.000011 in barrier 52
+
+Total time spent in barrier 52: 0.000015
+Average time spent by a thread in barrier 52: 0.000016
+
+Thread 0 in barrier 53
+Thread 1 in barrier 53
+Thread 0 out of barrier 53
+Thread 0 spent 0.000005 in barrier 53
+Thread 1 out of barrier 53
+Thread 1 spent 0.000008 in barrier 53
+
+Total time spent in barrier 53: 0.000011
+Average time spent by a thread in barrier 53: 0.000015
+
+Thread 0 in barrier 54
+Thread 1 in barrier 54
+Thread 1 out of barrier 54
+Thread 0 out of barrier 54
+Thread 0 spent 0.000012 in barrier 54
+Thread 1 spent 0.000009 in barrier 54
+
+Total time spent in barrier 54: 0.000017
+Average time spent by a thread in barrier 54: 0.000018
+
+Thread 0 in barrier 55
+Thread 1 in barrier 55
+Thread 1 out of barrier 55
+Thread 0 out of barrier 55
+Thread 1 spent 0.000007 in barrier 55
+Thread 0 spent 0.000008 in barrier 55
+
+Total time spent in barrier 55: 0.000017
+Average time spent by a thread in barrier 55: 0.000016
+
+Thread 0 in barrier 56
+Thread 1 in barrier 56
+Thread 1 out of barrier 56
+Thread 0 out of barrier 56
+Thread 1 spent 0.000008 in barrier 56
+Thread 0 spent 0.000009 in barrier 56
+
+Total time spent in barrier 56: 0.000018
+Average time spent by a thread in barrier 56: 0.000017
+
+Thread 0 in barrier 57
+Thread 1 in barrier 57
+Thread 1 out of barrier 57
+Thread 1 spent 0.000010 in barrier 57
+Thread 0 out of barrier 57
+Thread 0 spent 0.000013 in barrier 57
+
+Total time spent in barrier 57: 0.000016
+Average time spent by a thread in barrier 57: 0.000020
+
+Thread 0 in barrier 58
+Thread 1 in barrier 58
+Thread 1 out of barrier 58
+Thread 0 out of barrier 58
+Thread 0 spent 0.000013 in barrier 58
+Thread 1 spent 0.000009 in barrier 58
+
+Total time spent in barrier 58: 0.000018
+Average time spent by a thread in barrier 58: 0.000021
+
+Thread 1 in barrier 59
+Thread 0 in barrier 59
+Thread 0 out of barrier 59
+Thread 0 spent 0.000006 in barrier 59
+Thread 1 out of barrier 59
+Thread 1 spent 0.000009 in barrier 59
+
+Total time spent in barrier 59: 0.000012
+Average time spent by a thread in barrier 59: 0.000018
+
+Thread 1 in barrier 60
+Thread 0 in barrier 60
+Thread 0 out of barrier 60
+Thread 1 out of barrier 60
+Thread 1 spent 0.000018 in barrier 60
+Thread 0 spent 0.000014 in barrier 60
+
+Total time spent in barrier 60: 0.000024
+Average time spent by a thread in barrier 60: 0.000025
+
+Thread 0 in barrier 61
+Thread 1 in barrier 61
+Thread 1 out of barrier 61
+Thread 1 spent 0.000010 in barrier 61
+Thread 0 out of barrier 61
+Thread 0 spent 0.000013 in barrier 61
+
+Total time spent in barrier 61: 0.000016
+Average time spent by a thread in barrier 61: 0.000024
+
+Thread 0 in barrier 62
+Thread 1 in barrier 62
+Thread 1 out of barrier 62
+Thread 0 out of barrier 62
+Thread 0 spent 0.000006 in barrier 62
+Thread 1 spent 0.000003 in barrier 62
+
+Total time spent in barrier 62: 0.000011
+Average time spent by a thread in barrier 62: 0.000017
+
+Thread 0 in barrier 63
+Thread 1 in barrier 63
+Thread 1 out of barrier 63
+Thread 0 out of barrier 63
+Thread 0 spent 0.000011 in barrier 63
+Thread 1 spent 0.000008 in barrier 63
+
+Total time spent in barrier 63: 0.000016
+Average time spent by a thread in barrier 63: 0.000018
+
+Thread 0 in barrier 64
+Thread 1 in barrier 64
+Thread 1 out of barrier 64
+Thread 1 spent 0.000009 in barrier 64
+Thread 0 out of barrier 64
+Thread 0 spent 0.000015 in barrier 64
+
+Total time spent in barrier 64: 0.000018
+Average time spent by a thread in barrier 64: 0.000021
+
+Thread 0 in barrier 65
+Thread 1 in barrier 65
+Thread 1 out of barrier 65
+Thread 0 out of barrier 65
+Thread 0 spent 0.000006 in barrier 65
+Thread 1 spent 0.000003 in barrier 65
+
+Total time spent in barrier 65: 0.000011
+Average time spent by a thread in barrier 65: 0.000015
+
+Thread 0 in barrier 66
+Thread 1 in barrier 66
+Thread 1 out of barrier 66
+Thread 1 spent 0.000005 in barrier 66
+Thread 0 out of barrier 66
+Thread 0 spent 0.000008 in barrier 66
+
+Total time spent in barrier 66: 0.000011
+Average time spent by a thread in barrier 66: 0.000014
+
+Thread 0 in barrier 67
+Thread 1 in barrier 67
+Thread 1 out of barrier 67
+Thread 0 out of barrier 67
+Thread 1 spent 0.000002 in barrier 67
+Thread 0 spent 0.000003 in barrier 67
+
+Total time spent in barrier 67: 0.000012
+Average time spent by a thread in barrier 67: 0.000010
+
+Thread 0 in barrier 68
+Thread 1 in barrier 68
+Thread 1 out of barrier 68
+Thread 1 spent 0.000010 in barrier 68
+Thread 0 out of barrier 68
+Thread 0 spent 0.000012 in barrier 68
+
+Total time spent in barrier 68: 0.000015
+Average time spent by a thread in barrier 68: 0.000016
+
+Thread 0 in barrier 69
+Thread 1 in barrier 69
+Thread 1 out of barrier 69
+Thread 0 out of barrier 69
+Thread 0 spent 0.000006 in barrier 69
+Thread 1 spent 0.000003 in barrier 69
+
+Total time spent in barrier 69: 0.000011
+Average time spent by a thread in barrier 69: 0.000012
+
+Thread 0 in barrier 70
+Thread 1 in barrier 70
+Thread 1 out of barrier 70
+Thread 0 out of barrier 70
+Thread 1 spent 0.000003 in barrier 70
+Thread 0 spent 0.000004 in barrier 70
+
+Total time spent in barrier 70: 0.000011
+Average time spent by a thread in barrier 70: 0.000010
+
+Thread 0 in barrier 71
+Thread 1 in barrier 71
+Thread 0 out of barrier 71
+Thread 0 spent 0.000006 in barrier 71
+Thread 1 out of barrier 71
+Thread 1 spent 0.000008 in barrier 71
+
+Total time spent in barrier 71: 0.000012
+Average time spent by a thread in barrier 71: 0.000012
+
+Thread 1 in barrier 72
+Thread 0 in barrier 72
+Thread 0 out of barrier 72
+Thread 1 out of barrier 72
+Thread 1 spent 0.000011 in barrier 72
+Thread 0 spent 0.000008 in barrier 72
+
+Total time spent in barrier 72: 0.000016
+Average time spent by a thread in barrier 72: 0.000015
+
+Thread 0 in barrier 73
+Thread 1 in barrier 73
+Thread 1 out of barrier 73
+Thread 1 spent 0.000005 in barrier 73
+Thread 0 out of barrier 73
+Thread 0 spent 0.000007 in barrier 73
+
+Total time spent in barrier 73: 0.000010
+Average time spent by a thread in barrier 73: 0.000014
+
+Thread 0 in barrier 74
+Thread 1 in barrier 74
+Thread 1 out of barrier 74
+Thread 0 out of barrier 74
+Thread 0 spent 0.000011 in barrier 74
+Thread 1 spent 0.000008 in barrier 74
+
+Total time spent in barrier 74: 0.000016
+Average time spent by a thread in barrier 74: 0.000016
+
+Thread 0 in barrier 75
+Thread 1 in barrier 75
+Thread 1 out of barrier 75
+Thread 1 spent 0.000011 in barrier 75
+Thread 0 out of barrier 75
+Thread 0 spent 0.000013 in barrier 75
+
+Total time spent in barrier 75: 0.000017
+Average time spent by a thread in barrier 75: 0.000020
+
+Thread 0 in barrier 76
+Thread 1 in barrier 76
+Thread 1 out of barrier 76
+Thread 0 out of barrier 76
+Thread 0 spent 0.000011 in barrier 76
+Thread 1 spent 0.000008 in barrier 76
+
+Total time spent in barrier 76: 0.000016
+Average time spent by a thread in barrier 76: 0.000020
+
+Thread 0 in barrier 77
+Thread 1 in barrier 77
+Thread 1 out of barrier 77
+Thread 0 out of barrier 77
+Thread 0 spent 0.000006 in barrier 77
+Thread 1 spent 0.000003 in barrier 77
+
+Total time spent in barrier 77: 0.000012
+Average time spent by a thread in barrier 77: 0.000014
+
+Thread 0 in barrier 78
+Thread 1 in barrier 78
+Thread 1 out of barrier 78
+Thread 1 spent 0.000005 in barrier 78
+Thread 0 out of barrier 78
+Thread 0 spent 0.000007 in barrier 78
+
+Total time spent in barrier 78: 0.000012
+Average time spent by a thread in barrier 78: 0.000013
+
+Thread 0 in barrier 79
+Thread 1 in barrier 79
+Thread 1 out of barrier 79
+Thread 1 spent 0.000005 in barrier 79
+Thread 0 out of barrier 79
+Thread 0 spent 0.000008 in barrier 79
+
+Total time spent in barrier 79: 0.000012
+Average time spent by a thread in barrier 79: 0.000013
+
+Thread 0 in barrier 80
+Thread 1 in barrier 80
+Thread 1 out of barrier 80
+Thread 0 out of barrier 80
+Thread 0 spent 0.000014 in barrier 80
+Thread 1 spent 0.000011 in barrier 80
+
+Total time spent in barrier 80: 0.000019
+Average time spent by a thread in barrier 80: 0.000019
+
+Thread 1 in barrier 81
+Thread 0 in barrier 81
+Thread 0 out of barrier 81
+Thread 1 out of barrier 81
+Thread 0 spent 0.000004 in barrier 81
+Thread 1 spent 0.000005 in barrier 81
+
+Total time spent in barrier 81: 0.000014
+Average time spent by a thread in barrier 81: 0.000014
+
+Thread 0 in barrier 82
+Thread 1 in barrier 82
+Thread 1 out of barrier 82
+Thread 1 spent 0.000009 in barrier 82
+Thread 0 out of barrier 82
+Thread 0 spent 0.000012 in barrier 82
+
+Total time spent in barrier 82: 0.000015
+Average time spent by a thread in barrier 82: 0.000017
+
+Thread 0 in barrier 83
+Thread 1 in barrier 83
+Thread 1 out of barrier 83
+Thread 1 spent 0.000010 in barrier 83
+Thread 0 out of barrier 83
+Thread 0 spent 0.000013 in barrier 83
+
+Total time spent in barrier 83: 0.000016
+Average time spent by a thread in barrier 83: 0.000020
+
+Thread 0 in barrier 84
+Thread 1 in barrier 84
+Thread 1 out of barrier 84
+Thread 1 spent 0.000011 in barrier 84
+Thread 0 out of barrier 84
+Thread 0 spent 0.000013 in barrier 84
+
+Total time spent in barrier 84: 0.000016
+Average time spent by a thread in barrier 84: 0.000022
+
+Thread 0 in barrier 85
+Thread 1 in barrier 85
+Thread 1 out of barrier 85
+Thread 1 spent 0.000005 in barrier 85
+Thread 0 out of barrier 85
+Thread 0 spent 0.000008 in barrier 85
+
+Total time spent in barrier 85: 0.000010
+Average time spent by a thread in barrier 85: 0.000018
+
+Thread 0 in barrier 86
+Thread 1 in barrier 86
+Thread 1 out of barrier 86
+Thread 0 out of barrier 86
+Thread 0 spent 0.000011 in barrier 86
+Thread 1 spent 0.000008 in barrier 86
+
+Total time spent in barrier 86: 0.000016
+Average time spent by a thread in barrier 86: 0.000018
+
+Thread 0 in barrier 87
+Thread 1 in barrier 87
+Thread 1 out of barrier 87
+Thread 0 out of barrier 87
+Thread 0 spent 0.000005 in barrier 87
+Thread 1 spent 0.000002 in barrier 87
+
+Total time spent in barrier 87: 0.000011
+Average time spent by a thread in barrier 87: 0.000013
+
+Thread 0 in barrier 88
+Thread 1 in barrier 88
+Thread 1 out of barrier 88
+Thread 1 spent 0.000005 in barrier 88
+Thread 0 out of barrier 88
+Thread 0 spent 0.000007 in barrier 88
+
+Total time spent in barrier 88: 0.000011
+Average time spent by a thread in barrier 88: 0.000012
+
+Thread 0 in barrier 89
+Thread 1 in barrier 89
+Thread 1 out of barrier 89
+Thread 1 spent 0.000010 in barrier 89
+Thread 0 out of barrier 89
+Thread 0 spent 0.000012 in barrier 89
+
+Total time spent in barrier 89: 0.000016
+Average time spent by a thread in barrier 89: 0.000017
+
+Thread 0 in barrier 90
+Thread 1 in barrier 90
+Thread 1 out of barrier 90
+Thread 0 out of barrier 90
+Thread 0 spent 0.000007 in barrier 90
+Thread 1 spent 0.000003 in barrier 90
+
+Total time spent in barrier 90: 0.000012
+Average time spent by a thread in barrier 90: 0.000014
+
+Thread 0 in barrier 91
+Thread 1 in barrier 91
+Thread 1 out of barrier 91
+Thread 1 spent 0.000005 in barrier 91
+Thread 0 out of barrier 91
+Thread 0 spent 0.000008 in barrier 91
+
+Total time spent in barrier 91: 0.000011
+Average time spent by a thread in barrier 91: 0.000013
+
+Thread 0 in barrier 92
+Thread 1 in barrier 92
+Thread 1 out of barrier 92
+Thread 0 out of barrier 92
+Thread 0 spent 0.000011 in barrier 92
+Thread 1 spent 0.000007 in barrier 92
+
+Total time spent in barrier 92: 0.000017
+Average time spent by a thread in barrier 92: 0.000016
+
+Thread 0 in barrier 93
+Thread 1 in barrier 93
+Thread 1 out of barrier 93
+Thread 1 spent 0.000009 in barrier 93
+Thread 0 out of barrier 93
+Thread 0 spent 0.000012 in barrier 93
+
+Total time spent in barrier 93: 0.000015
+Average time spent by a thread in barrier 93: 0.000018
+
+Thread 0 in barrier 94
+Thread 1 in barrier 94
+Thread 1 out of barrier 94
+Thread 0 out of barrier 94
+Thread 1 spent 0.000008 in barrier 94
+Thread 0 spent 0.000008 in barrier 94
+
+Total time spent in barrier 94: 0.000016
+Average time spent by a thread in barrier 94: 0.000017
+
+Thread 0 in barrier 95
+Thread 1 in barrier 95
+Thread 1 out of barrier 95
+Thread 1 spent 0.000005 in barrier 95
+Thread 0 out of barrier 95
+Thread 0 spent 0.000007 in barrier 95
+
+Total time spent in barrier 95: 0.000010
+Average time spent by a thread in barrier 95: 0.000015
+
+Thread 0 in barrier 96
+Thread 1 in barrier 96
+Thread 1 out of barrier 96
+Thread 1 spent 0.000010 in barrier 96
+Thread 0 out of barrier 96
+Thread 0 spent 0.000012 in barrier 96
+
+Total time spent in barrier 96: 0.000015
+Average time spent by a thread in barrier 96: 0.000018
+
+Thread 0 in barrier 97
+Thread 1 in barrier 97
+Thread 1 out of barrier 97
+Thread 0 out of barrier 97
+Thread 1 spent 0.000003 in barrier 97
+Thread 0 spent 0.000004 in barrier 97
+
+Total time spent in barrier 97: 0.000012
+Average time spent by a thread in barrier 97: 0.000013
+
+Thread 0 in barrier 98
+Thread 1 in barrier 98
+Thread 1 out of barrier 98
+Thread 0 out of barrier 98
+Thread 0 spent 0.000011 in barrier 98
+Thread 1 spent 0.000008 in barrier 98
+
+Total time spent in barrier 98: 0.000016
+Average time spent by a thread in barrier 98: 0.000016
+
+Thread 0 in barrier 99
+Thread 1 in barrier 99
+Thread 1 out of barrier 99
+Thread 1 spent 0.000010 in barrier 99
+Thread 0 out of barrier 99
+Thread 0 spent 0.000013 in barrier 99
+
+Total time spent in barrier 99: 0.000015
+Average time spent by a thread in barrier 99: 0.000019
+
+Overall average time spent by a thread in a barrier: 0.000018
+Overall average time spent in a barrier: 0.000017

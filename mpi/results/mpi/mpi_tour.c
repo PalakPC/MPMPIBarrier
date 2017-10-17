@@ -44,7 +44,7 @@ void tour_barrier(round_node* curr_proc_node, int rank, int n_rnds)
 		while(1)
 		{
 			round_node* curr_node = curr_proc_node + round;
-			//printf("process rank : %d, round no : %d, role : %d\n\n", rank, round, curr_node->curr_role);
+			printf("process rank : %d, round no : %d, role : %d\n\n", rank, round, curr_node->curr_role);
 			exit = 0;
 			switch(curr_node->curr_role)
 			{
@@ -66,7 +66,7 @@ void tour_barrier(round_node* curr_proc_node, int rank, int n_rnds)
 			if(exit == 1) break;
 			round ++;
 		}
-		 //printf("Process : %d exited\n\n", rank); 
+		 printf("Process : %d exited\n\n", rank); 
 		while(1)
 		{
 			round --; 
@@ -98,7 +98,7 @@ void tournament_init(round_node* curr_node_rnd, int rank, int proc_num)
 			for(i=0; i<=max_rnds; i++)
 			{
 				round_node* curr_rnd = curr_node_rnd + i;
-				//printf("current proc = %d, round = %d\n", rank, i);
+				printf("current proc = %d, round = %d\n", rank, i);
 				state = 0;
 				if(i > 0)
 				{
@@ -107,14 +107,14 @@ void tournament_init(round_node* curr_node_rnd, int rank, int proc_num)
 						if(((rank + (int)pow(2, i-1)) < proc_num) && ((int)pow(2,i) < proc_num))
 						{
 							curr_rnd->curr_role = WINNER;
-							state = 1;
-							//printf("current proc = %d round = %d : WINNER\n", rank, i);
+							state =
+							printf("current proc = %d round = %d : WINNER\n", rank, i);
 						}
 						else if((rank + (int)pow(2, i-1)) >= proc_num)
 						{
 							state = 1;
 							curr_rnd->curr_role = BYE;
-							//printf("current proc = %d round = %d : BYE\n", rank, i);
+							printf("current proc = %d round = %d : BYE\n", rank, i);
 						}
 					}
 					if(state == 0)
@@ -122,19 +122,19 @@ void tournament_init(round_node* curr_node_rnd, int rank, int proc_num)
 						if((rank % (int)pow(2,i)) == (int)pow(2,i-1))
 						{
 							curr_rnd->curr_role = LOSER;
-							//printf("current proc = %d round = %d : LOSER\n", rank, i);
+							printf("current proc = %d round = %d : LOSER\n", rank, i);
 						}
 						else if((rank == 0) && ((int)pow(2,i) >= proc_num))
 						{
 							curr_rnd->curr_role = CHAMPION;
-							//printf("current proc = %d round = %d : CHAMPION\n", rank, i);
+							printf("current proc = %d round = %d : CHAMPION\n", rank, i);
 						}
 					}
 				}
 				else if (i == 0)
 				{
 					curr_rnd->curr_role = DROPOUT;
-					//printf("current proc = %d round = %d : DROPOUT\n", rank, i);
+					printf("current proc = %d round = %d : DROPOUT\n", rank, i);
 				}
 				int flag = -1;
 
@@ -153,7 +153,7 @@ void tournament_init(round_node* curr_node_rnd, int rank, int proc_num)
 int main(int argc, char **argv)
 {
 	int n_barriers; 
-	int max_rnds;
+	int i, max_rnds;
         int rank;
         int proc_num;
         int sense;
@@ -190,7 +190,7 @@ int main(int argc, char **argv)
    	overall_total_time = 0;
 	tournament_init(curr_proc_rnd, rank, proc_num);
 	
-	for(int i=0; i < n_barriers; i++)
+	for(i=0; i < n_barriers; i++)
 	{
 	
 		start_time = mysecond();
@@ -206,7 +206,7 @@ int main(int argc, char **argv)
      	 	MPI_Reduce(&end_time, &global_end_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
       		MPI_Reduce(&time_diff, &global_time_diff, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 	
-		if (rank == 0)
+		if (curr_proc_rnd->curr_role == CHAMPION)
      		 {
          		total_time = global_end_time - global_start_time;
 		        overall_total_time += total_time;
@@ -217,7 +217,7 @@ int main(int argc, char **argv)
       		 }
 
 	}
-	if (rank == 0)
+	if (curr_proc_rnd->curr_role == CHAMPION)
 	{
 		overall_avg_time /= n_barriers;
 	        overall_total_time /= n_barriers;

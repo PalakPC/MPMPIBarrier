@@ -41,21 +41,22 @@ int main(int argc, char **argv)
 	double start_time, end_time, avg;
 	printf("process %d is working\n", rank);
 	avg = 0.0;		
-	//start_time = mysecond();
+	start_time = mysecond();
 	for (j=0; j<iterations; j++) 
 	{
-		avg = 0.0;
-		start_time = mysecond();
+		//avg = 0.0;
+		//start_time = mysecond();
 		printf("Entering mcs for barrier:%d by process no %d\n", j, rank);
 		mcs_barrier(numberofprocess,rank);
 		printf("Exiting mcs for barrier:%d by process no %d\n", j, rank);
-		end_time = mysecond();
+		//end_time = mysecond();
 		//printf("time for barrier no %d for process rank %d is %f\n", j, rank, (end_time - start_time));
 		avg = avg + (end_time - start_time);
 	}
-	//end_time = mysecond();
+	end_time = mysecond();
+	avg = avg + (end_time - start_time);
 	//printf("time for barrier no %d for process rank %d is %f\n", j, rank, (end_time - start_time));	
-	printf("The average time for %d process is %f\n", rank, avg);
+	printf("The average time for %d process for %d barriers is %f\n", rank,iterations, avg);
 
 	finalize();
         MPI_Finalize();
