@@ -93,7 +93,7 @@ int main(int argc, char **argv)
          barrier_start_time = DBL_MAX; //Maximum value for comparison
          barrier_end_time = 0;   //Minimum value for comparison
 
-#        pragma omp single //Only one thread should print this
+#        pragma omp single nowait//Only one thread should print this
          {
             printf("\nStats for barrier number: %d\n", i);
             printf("\nThread ID\tTime Spent (in seconds)\n\n");
@@ -127,7 +127,7 @@ int main(int argc, char **argv)
 #        pragma omp atomic //Atomic operation to ensure correctness
             barrier_avg_time_spent += thread_total_time_spent;
 
-#        pragma omp single
+#        pragma omp single nowait
          {
             barrier_total_time_spent = barrier_end_time - barrier_start_time;
             barrier_avg_time_spent /= NUM_THREADS;

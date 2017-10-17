@@ -38,7 +38,6 @@ void dissemination_init(int NUM_THREADS, flags *allnodes)
             {
                if (j == temp)
                {
-                  printf("%d partner %d\n", i, j);
                   (allnodes + i)->partnerflags[r][k] = &(allnodes + j)->myflags[r][k];
                }
             }
