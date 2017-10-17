@@ -12,25 +12,6 @@
 
 # include "mcs.h"
 
-# define W_ARY 2
-# define A_ARY 4
-
-typedef struct
-{
-   double avg_time_spent;
-   double total_time_spent;
-} Measures;
-
-typedef struct
-{
-   int parentsense;
-   int *parentpointer;
-   int *childpointers[W_ARY];
-   int havechild[A_ARY];
-   int childnotready[A_ARY];
-   int dummy;
-} treenode;
-
 double mysecond()
 {
    struct timeval tp;
@@ -50,6 +31,9 @@ int main(int argc, char **argv)
    /*
     * Variables needed for timing measurements
     */
+   double process_start_time;  //Entry time of thread in barrier
+   double process_end_time; //Exit time of thread from barrier
+   double process_total_time_spent;  //Time spent by thread in a barrier
    double barrier_start_time; //Start time of a barrier
    double barrier_end_time;   //End time of a barrier
    double barrier_avg_time_spent;   //Average time a thread spent in a barrier
@@ -61,25 +45,15 @@ int main(int argc, char **argv)
     * Variables needed for algorithm logic
     */
    int rank;
-   int sense;
+   bool sense;
    treenode *nodes;
-   
-   double start_time;
-   double end_time;
-   double time_diff;
-   double global_start_time;
-   double global_end_time;
-   double global_time_diff;
-   double total_time;
-   double overall_total_time;
-   double overall_avg_time;
    
    /*
     * Getting command-line arguments for number of barriers and number of threads
     */
    if (argc != 2)
    {
-      printf("Error, invalid number of arguments\nProper usage: ./dissemination <number of barriers> <number of threads>\nExiting\n");
+      printf("Error, invalid number of arguments\nProper usage: mpirun ./mcs <number of barriers>\nExiting\n");
       exit(-1);   //Improper call, so exit the program
    }
    else
@@ -93,47 +67,55 @@ int main(int argc, char **argv)
    
    nodes = (treenode *) malloc(NUM_PROCESSES * sizeof(treenode));
 
-   mcs_init(nodes, NUM_PROCESSES, rank);  //Set initial state of nodes 
+   mcs_init(nodes, NUM_PROCESSES, rank, &sense);  //Set initial state of nodes 
 
    overall_avg_time_spent = 0;   //Initial value
    overall_total_time_spent = 0; //Initial value
    
-   overall_avg_time = 0;
-   overall_total_time = 0;
-
-   for(i = 0; i < BARRIER_NUM; ++i)
+   barrier_avg_time_spent = 0;   //Initial value
+   barrier_start_time = DBL_MAX; //Maximum value for comparison
+   barrier_end_time = 0;   //Minimum value for comparison
+   
+   for(i = 0; i < NUM_BARRIERS; i++)
    {
-      start_time = mysecond();
-      printf("\nProcess %d in barrier %d\n", rank, i);
-      mcs_barrier(nodes, proc_num, i, rank, *sense);
-      printf("Process %d out of barrier %d\n", rank, i);
-      end_time = mysecond();
+      process_start_time = mysecond();
+      mcs_barrier(nodes, NUM_PROCESSES, i, rank, &sense);
+      process_end_time = mysecond();
       
-      time_diff = end_time - start_time;
-      printf("Process %d spent %f in barrier %d\n", rank, time_diff, i);
+      process_total_time_spent = process_end_time - process_start_time;
+      printf("Process %d spent %f in barrier %d\n", rank, process_total_time_spent, i);
       
-      MPI_Reduce(&start_time, &global_start_time, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
-      MPI_Reduce(&end_time, &global_end_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
-      MPI_Reduce(&time_diff, &global_time_diff, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+      MPI_Reduce(&process_start_time, &barrier_start_time, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
+      MPI_Reduce(&process_end_time, &barrier_end_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+      MPI_Reduce(&process_total_time_spent, &barrier_avg_time_spent, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
       
       if (rank == 0)
       {
-         total_time = global_end_time - global_start_time;
-         overall_total_time += total_time;
-         printf("\nTotal time spent in barrier %d: %f\n", i, total_time);
-         global_time_diff /= proc_num;
-         overall_avg_time += global_time_diff;
-         printf("Average time spent by a thread in barrier %d: %f\n\n", i, global_time_diff);
+         barrier_total_time_spent = barrier_end_time - barrier_start_time;
+         barrier_avg_time_spent /= NUM_PROCESSES;
+
+         printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_total_time_spent);
+         printf("Average time spent by a thread in barrier %d (in seconds): %f\n\n", i, barrier_avg_time_spent);
+
+         overall_avg_time_spent += barrier_avg_time_spent;
+         overall_total_time_spent += barrier_total_time_spent;
+
+         /*
+          * Restting values
+          */
+         barrier_avg_time_spent = 0;   //Initial value
+         barrier_start_time = DBL_MAX; //Maximum value for comparison
+         barrier_end_time = 0;   //Minimum value for comparison
       }
    }
 
    if (rank == 0)
    {
-      overall_avg_time /= BARRIER_NUM;
-      overall_total_time /= BARRIER_NUM;
+      overall_avg_time_spent /= NUM_BARRIERS;
+      overall_total_time_spent /= NUM_BARRIERS;
 
-      printf("Overall average time spent by a process in a barrier: %f\n", overall_avg_time);
-      printf("Overall average time spent in a barrier: %f\n", overall_total_time);
+      printf("Overall average time spent by a thread in a barrier (in seconds): %f\n", overall_avg_time_spent);
+      printf("Overall average time spent in a barrier: %f\n", overall_total_time_spent);
    }
    
    MPI_Finalize();

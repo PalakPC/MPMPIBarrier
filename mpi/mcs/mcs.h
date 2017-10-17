@@ -7,3 +7,19 @@
 # include <mpi.h>
 # include <math.h>
 
+# define W_ARY 2
+# define A_ARY 4
+
+typedef struct
+{
+   bool parentsense;
+   bool *parentpointer;
+   bool *childpointers[W_ARY];
+   bool havechild[A_ARY];
+   bool childnotready[A_ARY];
+   bool dummy;
+} treenode;
+
+void mcs_init(treenode *nodes, int NUM_PROCESSES, int i, bool *sense);
+
+void mcs_barrier(treenode *nodes, int NUM_PROCESSES, int barrier, int rank, bool *sense);

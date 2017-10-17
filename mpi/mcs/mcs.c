@@ -1,65 +1,20 @@
 /* CS 6210 - Fall 2017
  * Project - 2
- * MCS Barrier - Test
+ * MCS Barrier
  * Palak Choudhary
  */
 
 # include <stdio.h>
-# include <stdbool
+# include <stdbool.h>
 
 # include "mcs.h"
 
-void mcs_barrier(treenode *nodes, int NUM_PROCESSES, int barrier, int rank, bool sense)
-{
-   int i;
-   bool buffer;
-   bool buffer2;
-   int floor_val;
-   MPI_Status status_1;
-   MPI_Status status_2;
-
-   for (i = 0; i < A_ARY; ++i)
-   {
-      if (((A_ARY * rank) + i + 1) < NUM_PROCESSES)
-      {
-         MPI_Recv(&((nodes + rank)->childnotready[i]), 1, MPI_INT, ((rank * A_ARY) + i + 1), 1, MPI_COMM_WORLD, &status_1);
-      }
-   }
-   
-   for (i = 0; i < A_ARY; i++)
-   {
-      (nodes + rank)->childnotready[i] = (nodes + rank)->havechild[i];
-   }
-
-   if (rank != 0)
-   {
-      buffer = false;
-      floor_val = floor((double)((rank - 1) / A_ARY));
-      MPI_Send(&buffer, 1, MPI_BYTE, floor((double)((rank - 1) / A_ARY)), 1, MPI_COMM_WORLD);
-   }
-   
-   if (rank != 0)
-   {
-      MPI_Recv(&((nodes + rank)->parentsense), 1, MPI_INT, ((rank - 1) / W_ARY), 2, MPI_COMM_WORLD, &status_2);
-
-   }
-
-   for (i = 0; i < W_ARY; i++)
-   {
-      if (((W_ARY * rank) + i + 1) < NUM_PROCESSES)
-      {
-         buffer2 = sense;
-         MPI_Send(&buffer2, 1, MPI_INT, ((W_ARY * rank) + i + 1), 2, MPI_COMM_WORLD);
-      }
-   }
-   
-   sense = !sense;
-}
-
-void mcs_init(treenode *nodes, int NUM_PROCESSES, int i)
+void mcs_init(treenode *nodes, int NUM_PROCESSES, int i, bool *sense)
 {
    int j;
    int floor_val;
+
+   *sense = true;
 
    for (j = 0; j < A_ARY; j++)
    {
@@ -101,4 +56,54 @@ void mcs_init(treenode *nodes, int NUM_PROCESSES, int i)
    }
 
    (nodes + i)->parentsense = false;
+}
+
+void mcs_barrier(treenode *nodes, int NUM_PROCESSES, int barrier, int rank, bool *sense)
+{
+   int i;
+   int floor_val;
+   bool buffer;
+   bool buffer2;
+   MPI_Status status_1;
+   MPI_Status status_2;
+
+   printf("\nProcess %d in barrier %d\n", rank, barrier);
+   
+   for (i = 0; i < A_ARY; ++i)
+   {
+      if (((A_ARY * rank) + i + 1) < NUM_PROCESSES)
+      {
+         MPI_Recv(&((nodes + rank)->childnotready[i]), 1, MPI_BYTE, ((rank * A_ARY) + i + 1), 1, MPI_COMM_WORLD, &status_1);
+      }
+   }
+   
+   for (i = 0; i < A_ARY; i++)
+   {
+      (nodes + rank)->childnotready[i] = (nodes + rank)->havechild[i];
+   }
+
+   if (rank != 0)
+   {
+      buffer = false;
+      floor_val = floor((double)((rank - 1) / A_ARY));
+      MPI_Send(&buffer, 1, MPI_BYTE, floor_val, 1, MPI_COMM_WORLD);
+   }
+   
+   if (rank != 0)
+   {
+      MPI_Recv(&((nodes + rank)->parentsense), 1, MPI_BYTE, ((rank - 1) / W_ARY), 2, MPI_COMM_WORLD, &status_2);
+
+   }
+
+   for (i = 0; i < W_ARY; i++)
+   {
+      if (((W_ARY * rank) + i + 1) < NUM_PROCESSES)
+      {
+         buffer2 = sense;
+         MPI_Send(&buffer2, 1, MPI_BYTE, ((W_ARY * rank) + i + 1), 2, MPI_COMM_WORLD);
+      }
+   }
+   
+   *sense = !(*sense);
+   printf("Process %d out of barrier %d\n", rank, barrier);
 }
