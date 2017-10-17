@@ -30,6 +30,7 @@ int main(int argc, char **argv)
    /*
     * Variables needed for timing measurements
     */
+   int counter;
    double barrier_start_time; //Start time of a barrier
    double barrier_end_time;   //End time of a barrier
    double barrier_avg_time_spent;   //Average time a thread spent in a barrier
@@ -61,6 +62,11 @@ int main(int argc, char **argv)
 
    overall_avg_time_spent = 0;   //Initial value
    overall_total_time_spent = 0; //Initial value
+   
+   counter = 0;
+   barrier_avg_time_spent = 0;   //Initial value
+   barrier_start_time = DBL_MAX; //Maximum value for comparison
+   barrier_end_time = 0;   //Minimum value for comparison
 
    omp_set_num_threads(NUM_THREADS);   //Setting number of threads for parallel section
 
@@ -124,16 +130,28 @@ int main(int argc, char **argv)
 #        pragma omp atomic //Atomic operation to ensure correctness
             barrier_avg_time_spent += thread_total_time_spent;
 
-#        pragma omp single nowait
+#        pragma omp critical
          {
-            barrier_total_time_spent = barrier_end_time - barrier_start_time;
-            barrier_avg_time_spent /= NUM_THREADS;
+            counter++;
+            if (counter == NUM_THREADS)
+            {
+               barrier_total_time_spent = barrier_end_time - barrier_start_time;
+               barrier_avg_time_spent /= NUM_THREADS;
 
-            printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_total_time_spent);
-            printf("Average time spent by a thread in barrier %d (in seconds): %f\n\n", i, barrier_avg_time_spent);
+               printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_total_time_spent);
+               printf("Average time spent by a thread in barrier %d (in seconds): %f\n\n", i, barrier_avg_time_spent);
 
-            overall_avg_time_spent += barrier_avg_time_spent;
-            overall_total_time_spent += barrier_total_time_spent;
+               overall_avg_time_spent += barrier_avg_time_spent;
+               overall_total_time_spent += barrier_total_time_spent;
+
+               /*
+                * Restting values
+                */
+               counter = 0;
+               barrier_avg_time_spent = 0;   //Initial value
+               barrier_start_time = DBL_MAX; //Maximum value for comparison
+               barrier_end_time = 0;   //Minimum value for comparison
+            }
          } 
       }  //All barriers done
    }  //Parallel region end
