@@ -6,6 +6,6 @@
 
 for n in {2..8}
 do
-	./dissemination 1000 $n > /nethome/pchoudhary32/CS6210_Project2/openmp/dissemination/results/logd.txt
+	./dissemination 1000 $n > /nethome/pchoudhary32/CS6210_Project2/openmp/dissemination_without_printfs/results/logd.txt
 done
 #eof
