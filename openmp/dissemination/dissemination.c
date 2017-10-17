@@ -5,13 +5,14 @@
  */
 
 # include <stdio.h>
+# include <stdbool.h>
 
 # include "dissemination.h"
 
 void dissemination_init(int NUM_THREADS, flags *allnodes)
 {
    /*
-    * Implementation of Hensgen, Finkel, and Manber's dissemination barrier
+    * Implementation of initialization part of Hensgen, Finkel, and Manber's dissemination barrier
     */
 
    int i;
@@ -25,13 +26,13 @@ void dissemination_init(int NUM_THREADS, flags *allnodes)
    P = NUM_THREADS;
    logP = ceil(log2(P));
 
-   for (r = 0; r < 2; r++)
+   for (i = 0; i < P; i++)
    {
-      for (k = 0; k < logP; k++)
+      for (r = 0; r < 2; r++)
       {
-         for (i = 0; i < P; i++)
+         for (k = 0; k < logP; k++)
          {
-            (allnodes + i)->myflags[r][k] = 0;
+            (allnodes + i)->myflags[r][k] = false;
             temp = fmod((i + pow(2, k)), P);
             for (j = 0; j < P; j++)
             {
@@ -46,8 +47,12 @@ void dissemination_init(int NUM_THREADS, flags *allnodes)
    }
 }
 
-void dissemination_barrier(int t, int NUM_THREADS, flags *allnodes, int barrier, int *sense, int *parity)
+void dissemination_barrier(int t, int NUM_THREADS, flags *allnodes, int barrier, bool *sense, int *parity)
 {
+   /*
+    * Implementation of Hensgen, Finkel, and Manber's dissemination barrier
+    */
+   
    int instance;
    int logP;
    flags *localflags;

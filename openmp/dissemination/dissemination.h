@@ -12,10 +12,10 @@
 
 typedef struct
 {
-   int myflags[2][MAX_LOGP];
-   int *partnerflags[2][MAX_LOGP];
+   bool myflags[2][MAX_LOGP];
+   bool *partnerflags[2][MAX_LOGP];
 } flags;
 
 void dissemination_init(int NUM_THREADS, flags *allnodes);
 
-void dissemination_barrier(int t, int NUM_THREADS, flags *allnodes, int barrier, int *sense, int *parity);
+void dissemination_barrier(int t, int NUM_THREADS, flags *allnodes, int barrier, bool *sense, int *parity);
