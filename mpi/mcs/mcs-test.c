@@ -53,7 +53,7 @@ int main(int argc, char **argv)
     */
    if (argc != 2)
    {
-      printf("Error, invalid number of arguments\nProper usage: mpirun ./mcs <number of barriers>\nExiting\n");
+      printf("Error, invalid number of arguments\nProper usage: mpirun -np <number of processes> ./mcs <number of barriers>\nExiting\n");
       exit(-1);   //Improper call, so exit the program
    }
    else
@@ -83,7 +83,7 @@ int main(int argc, char **argv)
       process_end_time = mysecond();
       
       process_total_time_spent = process_end_time - process_start_time;
-      printf("Process %d spent %f in barrier %d\n", rank, process_total_time_spent, i);
+      printf("%d\t%f\t%f\t%f\n", rank, process_total_time_spent, process_end_time, process_start_time);
       
       MPI_Reduce(&process_start_time, &barrier_start_time, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
       MPI_Reduce(&process_end_time, &barrier_end_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
@@ -95,11 +95,11 @@ int main(int argc, char **argv)
          barrier_avg_time_spent /= NUM_PROCESSES;
 
          printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_total_time_spent);
-         printf("Average time spent by a thread in barrier %d (in seconds): %f\n\n", i, barrier_avg_time_spent);
+         printf("Average time spent by a process in barrier %d (in seconds): %f\n\n", i, barrier_avg_time_spent);
 
          overall_avg_time_spent += barrier_avg_time_spent;
          overall_total_time_spent += barrier_total_time_spent;
-
+         
          /*
           * Restting values
           */
@@ -114,7 +114,7 @@ int main(int argc, char **argv)
       overall_avg_time_spent /= NUM_BARRIERS;
       overall_total_time_spent /= NUM_BARRIERS;
 
-      printf("Overall average time spent by a thread in a barrier (in seconds): %f\n", overall_avg_time_spent);
+      printf("Overall average time spent by a process in a barrier (in seconds): %f\n", overall_avg_time_spent);
       printf("Overall average time spent in a barrier: %f\n", overall_total_time_spent);
    }
    
