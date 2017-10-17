@@ -14,7 +14,7 @@ echo "*** STARTED: `date` on `hostname` ***"
 for n2 in {2..12}
 do
 	echo "Num of processes = $n2"	
-	OMPI_MCA_mpi_yield_when_idle=0 /opt/openmpi-1.4.3-gcc44/bin/mpirun --hostfile /nethome/pchoudhary32/CS6210_Project2/nodefile -np $n2 /nethome/pchoudhary32/CS6210_Project2/mpi/mcs/mcs 1000 > logm$n2.txt
+	OMPI_MCA_mpi_yield_when_idle=0 /opt/openmpi-1.4.3-gcc44/bin/mpirun --hostfile $PBS_NODEFILE -np $n2 /nethome/pchoudhary32/CS6210_Project2/mpi/mcs/mcs 1000 > logm$n2.txt
 	echo "---------------------------------------------------------------------"
 done
 
