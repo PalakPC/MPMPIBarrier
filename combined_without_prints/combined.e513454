@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------
+The OpenFabrics (openib) BTL failed to initialize while trying to
+allocate some locked memory.  This typically can indicate that the
+memlock limits are set too low.  For most HPC installations, the
+memlock limits should be set to "unlimited".  The failure occured
+here:
+
+  Local host:    jinx1
+  OMPI source:   btl_openib_component.c:1055
+  Function:      ompi_free_list_init_ex_new()
+  Device:        mlx4_0
+  Memlock limit: 65536
+
+You may need to consult with your system administrator to get this
+problem fixed.  This FAQ entry on the Open MPI web site may also be
+helpful:
+
+    http://www.open-mpi.org/faq/?category=openfabrics#ib-locked-pages
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   jinx1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[jinx1:19514] 3 more processes have sent help message help-mpi-btl-openib.txt / init-fail-no-mem
+[jinx1:19514] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[jinx1:19514] 3 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+=>> PBS: job killed: walltime 301 exceeded limit 300
+mpirun: killing job...
+
+--------------------------------------------------------------------------
+mpirun noticed that process rank 0 with PID 19515 on node jinx1 exited on signal 0 (Unknown signal 0).
+--------------------------------------------------------------------------
+mpirun: clean termination accomplished
+
