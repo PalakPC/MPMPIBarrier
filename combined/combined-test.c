@@ -57,6 +57,8 @@ int main(int argc, char **argv)
    bool process_sense;
    treenode *nodes;
    flags *allnodes;  //Shared across threads
+   int count;
+   bool sense;
 
    /*
     * Getting command-line arguments for number of barriers and number of threads
@@ -79,7 +81,7 @@ int main(int argc, char **argv)
    nodes = (treenode *) malloc(NUM_PROCESSES * sizeof(treenode));
    allnodes = (flags *) malloc(NUM_THREADS * sizeof(flags));
 
-   combined_init(NUM_THREADS, allnodes, nodes, NUM_PROCESSES, rank, &process_sense);   //Set initial state of allnodes
+   combined_init(NUM_THREADS, allnodes, nodes, NUM_PROCESSES, rank, &process_sense, &count, &sense);   //Set initial state of allnodes
 
    overall_thread_avg_time_spent = 0;   //Initial value
    overall_thread_total_time_spent = 0; //Initial value
@@ -107,6 +109,7 @@ int main(int argc, char **argv)
       int thread_num;
       int parity;
       bool thread_sense;
+      bool local_sense;
 
       int flag;   //Needed to check last thread
 
@@ -120,11 +123,12 @@ int main(int argc, char **argv)
       thread_num = omp_get_thread_num();  //To get thread ID
       parity = 0; //Initial value
       thread_sense = true;  //Initial value
+      local_sense = true;  //Initial value
 
       for (i = 0; i < NUM_BARRIERS; i++)
       {
          thread_start_time = mysecond();  //Starting time of this thread
-         combined_barrier(thread_num, NUM_THREADS, &allnodes[thread_num], i, &thread_sense, &parity, nodes, NUM_PROCESSES, rank, &process_sense); //Call to barrier function
+         combined_barrier(thread_num, NUM_THREADS, &allnodes[thread_num], i, &thread_sense, &parity, nodes, NUM_PROCESSES, rank, &process_sense, &count, &sense, &local_sense); //Call to barrier function
          thread_end_time = mysecond();
 
 #        pragma omp critical  //Shared variable, need critical to ensure correctness
