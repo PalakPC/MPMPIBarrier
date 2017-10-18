@@ -1,0 +1,308 @@
+--------------------------------------------------------------------------
+The OpenFabrics (openib) BTL failed to initialize while trying to
+allocate some locked memory.  This typically can indicate that the
+memlock limits are set too low.  For most HPC installations, the
+memlock limits should be set to "unlimited".  The failure occured
+here:
+
+  Local host:    jinx1
+  OMPI source:   btl_openib_component.c:1055
+  Function:      ompi_free_list_init_ex_new()
+  Device:        mlx4_0
+  Memlock limit: 65536
+
+You may need to consult with your system administrator to get this
+problem fixed.  This FAQ entry on the Open MPI web site may also be
+helpful:
+
+    http://www.open-mpi.org/faq/?category=openfabrics#ib-locked-pages
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   jinx1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[jinx1:11961] 1 more process has sent help message help-mpi-btl-openib.txt / init-fail-no-mem
+[jinx1:11961] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[jinx1:11961] 1 more process has sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+The OpenFabrics (openib) BTL failed to initialize while trying to
+allocate some locked memory.  This typically can indicate that the
+memlock limits are set too low.  For most HPC installations, the
+memlock limits should be set to "unlimited".  The failure occured
+here:
+
+  Local host:    jinx1
+  OMPI source:   btl_openib_component.c:1055
+  Function:      ompi_free_list_init_ex_new()
+  Device:        mlx4_0
+  Memlock limit: 65536
+
+You may need to consult with your system administrator to get this
+problem fixed.  This FAQ entry on the Open MPI web site may also be
+helpful:
+
+    http://www.open-mpi.org/faq/?category=openfabrics#ib-locked-pages
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   jinx1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[jinx1:11968] 2 more processes have sent help message help-mpi-btl-openib.txt / init-fail-no-mem
+[jinx1:11968] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[jinx1:11968] 2 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+The OpenFabrics (openib) BTL failed to initialize while trying to
+allocate some locked memory.  This typically can indicate that the
+memlock limits are set too low.  For most HPC installations, the
+memlock limits should be set to "unlimited".  The failure occured
+here:
+
+  Local host:    jinx1
+  OMPI source:   btl_openib_component.c:1055
+  Function:      ompi_free_list_init_ex_new()
+  Device:        mlx4_0
+  Memlock limit: 65536
+
+You may need to consult with your system administrator to get this
+problem fixed.  This FAQ entry on the Open MPI web site may also be
+helpful:
+
+    http://www.open-mpi.org/faq/?category=openfabrics#ib-locked-pages
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   jinx1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[jinx1:11978] 3 more processes have sent help message help-mpi-btl-openib.txt / init-fail-no-mem
+[jinx1:11978] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[jinx1:11978] 3 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+The OpenFabrics (openib) BTL failed to initialize while trying to
+allocate some locked memory.  This typically can indicate that the
+memlock limits are set too low.  For most HPC installations, the
+memlock limits should be set to "unlimited".  The failure occured
+here:
+
+  Local host:    jinx1
+  OMPI source:   btl_openib_component.c:1055
+  Function:      ompi_free_list_init_ex_new()
+  Device:        mlx4_0
+  Memlock limit: 65536
+
+You may need to consult with your system administrator to get this
+problem fixed.  This FAQ entry on the Open MPI web site may also be
+helpful:
+
+    http://www.open-mpi.org/faq/?category=openfabrics#ib-locked-pages
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   jinx1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[jinx1:11991] 4 more processes have sent help message help-mpi-btl-openib.txt / init-fail-no-mem
+[jinx1:11991] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[jinx1:11991] 4 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+The OpenFabrics (openib) BTL failed to initialize while trying to
+allocate some locked memory.  This typically can indicate that the
+memlock limits are set too low.  For most HPC installations, the
+memlock limits should be set to "unlimited".  The failure occured
+here:
+
+  Local host:    jinx1
+  OMPI source:   btl_openib_component.c:1055
+  Function:      ompi_free_list_init_ex_new()
+  Device:        mlx4_0
+  Memlock limit: 65536
+
+You may need to consult with your system administrator to get this
+problem fixed.  This FAQ entry on the Open MPI web site may also be
+helpful:
+
+    http://www.open-mpi.org/faq/?category=openfabrics#ib-locked-pages
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   jinx1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[jinx1:12007] 5 more processes have sent help message help-mpi-btl-openib.txt / init-fail-no-mem
+[jinx1:12007] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[jinx1:12007] 5 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+The OpenFabrics (openib) BTL failed to initialize while trying to
+allocate some locked memory.  This typically can indicate that the
+memlock limits are set too low.  For most HPC installations, the
+memlock limits should be set to "unlimited".  The failure occured
+here:
+
+  Local host:    jinx1
+  OMPI source:   btl_openib_component.c:1055
+  Function:      ompi_free_list_init_ex_new()
+  Device:        mlx4_0
+  Memlock limit: 65536
+
+You may need to consult with your system administrator to get this
+problem fixed.  This FAQ entry on the Open MPI web site may also be
+helpful:
+
+    http://www.open-mpi.org/faq/?category=openfabrics#ib-locked-pages
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   jinx1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[jinx1:12026] 6 more processes have sent help message help-mpi-btl-openib.txt / init-fail-no-mem
+[jinx1:12026] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[jinx1:12026] 6 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+The OpenFabrics (openib) BTL failed to initialize while trying to
+allocate some locked memory.  This typically can indicate that the
+memlock limits are set too low.  For most HPC installations, the
+memlock limits should be set to "unlimited".  The failure occured
+here:
+
+  Local host:    jinx1
+  OMPI source:   btl_openib_component.c:1055
+  Function:      ompi_free_list_init_ex_new()
+  Device:        mlx4_0
+  Memlock limit: 65536
+
+You may need to consult with your system administrator to get this
+problem fixed.  This FAQ entry on the Open MPI web site may also be
+helpful:
+
+    http://www.open-mpi.org/faq/?category=openfabrics#ib-locked-pages
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   jinx1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[jinx1:12048] 7 more processes have sent help message help-mpi-btl-openib.txt / init-fail-no-mem
+[jinx1:12048] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[jinx1:12048] 7 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+The OpenFabrics (openib) BTL failed to initialize while trying to
+allocate some locked memory.  This typically can indicate that the
+memlock limits are set too low.  For most HPC installations, the
+memlock limits should be set to "unlimited".  The failure occured
+here:
+
+  Local host:    jinx1
+  OMPI source:   btl_openib_component.c:1055
+  Function:      ompi_free_list_init_ex_new()
+  Device:        mlx4_0
+  Memlock limit: 65536
+
+You may need to consult with your system administrator to get this
+problem fixed.  This FAQ entry on the Open MPI web site may also be
+helpful:
+
+    http://www.open-mpi.org/faq/?category=openfabrics#ib-locked-pages
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   jinx1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[jinx1:12073] 8 more processes have sent help message help-mpi-btl-openib.txt / init-fail-no-mem
+[jinx1:12073] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[jinx1:12073] 8 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+The OpenFabrics (openib) BTL failed to initialize while trying to
+allocate some locked memory.  This typically can indicate that the
+memlock limits are set too low.  For most HPC installations, the
+memlock limits should be set to "unlimited".  The failure occured
+here:
+
+  Local host:    jinx1
+  OMPI source:   btl_openib_component.c:1055
+  Function:      ompi_free_list_init_ex_new()
+  Device:        mlx4_0
+  Memlock limit: 65536
+
+You may need to consult with your system administrator to get this
+problem fixed.  This FAQ entry on the Open MPI web site may also be
+helpful:
+
+    http://www.open-mpi.org/faq/?category=openfabrics#ib-locked-pages
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   jinx1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[jinx1:12101] 9 more processes have sent help message help-mpi-btl-openib.txt / init-fail-no-mem
+[jinx1:12101] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[jinx1:12101] 9 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+The OpenFabrics (openib) BTL failed to initialize while trying to
+allocate some locked memory.  This typically can indicate that the
+memlock limits are set too low.  For most HPC installations, the
+memlock limits should be set to "unlimited".  The failure occured
+here:
+
+  Local host:    jinx1
+  OMPI source:   btl_openib_component.c:1055
+  Function:      ompi_free_list_init_ex_new()
+  Device:        mlx4_0
+  Memlock limit: 65536
+
+You may need to consult with your system administrator to get this
+problem fixed.  This FAQ entry on the Open MPI web site may also be
+helpful:
+
+    http://www.open-mpi.org/faq/?category=openfabrics#ib-locked-pages
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   jinx1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[jinx1:12133] 10 more processes have sent help message help-mpi-btl-openib.txt / init-fail-no-mem
+[jinx1:12133] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[jinx1:12133] 10 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+The OpenFabrics (openib) BTL failed to initialize while trying to
+allocate some locked memory.  This typically can indicate that the
+memlock limits are set too low.  For most HPC installations, the
+memlock limits should be set to "unlimited".  The failure occured
+here:
+
+  Local host:    jinx1
+  OMPI source:   btl_openib_component.c:1055
+  Function:      ompi_free_list_init_ex_new()
+  Device:        mlx4_0
+  Memlock limit: 65536
+
+You may need to consult with your system administrator to get this
+problem fixed.  This FAQ entry on the Open MPI web site may also be
+helpful:
+
+    http://www.open-mpi.org/faq/?category=openfabrics#ib-locked-pages
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   jinx1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[jinx1:12168] 11 more processes have sent help message help-mpi-btl-openib.txt / init-fail-no-mem
+[jinx1:12168] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[jinx1:12168] 11 more processes have sent help message help-mpi-btl-openib.txt / error in device init

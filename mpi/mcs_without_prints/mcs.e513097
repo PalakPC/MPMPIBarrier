@@ -1,0 +1,8 @@
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: 1000
+Node: jinx17
+
+while attempting to start process rank 0.
+--------------------------------------------------------------------------

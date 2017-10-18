@@ -1,0 +1,11 @@
+Overall average time spent by a process in a barrier (in seconds) for process	2	:	0.000004
+Overall average time spent by a process in a barrier (in seconds) for process	3	:	0.000004
+Overall average time spent by a process in a barrier (in seconds) for process	4	:	0.000008
+Overall average time spent by a process in a barrier (in seconds) for process	5	:	0.000009
+Overall average time spent by a process in a barrier (in seconds) for process	6	:	0.000012
+Overall average time spent by a process in a barrier (in seconds) for process	7	:	0.000013
+Overall average time spent by a process in a barrier (in seconds) for process	8	:	0.000011
+Overall average time spent by a process in a barrier (in seconds) for process	9	:	0.000020
+Overall average time spent by a process in a barrier (in seconds) for process	10	:	0.000016
+Overall average time spent by a process in a barrier (in seconds) for process	11	:	0.000014
+Overall average time spent by a process in a barrier (in seconds) for process	12	:	0.000017
