@@ -1,6 +1,6 @@
 #!/bin/sh
 #PBS -q cs6210 
-#PBS -l walltime=00:30:00
+#PBS -l walltime=00:20:00
 #PBS -N combined
 
 #PBS -l nodes=2:sixcore

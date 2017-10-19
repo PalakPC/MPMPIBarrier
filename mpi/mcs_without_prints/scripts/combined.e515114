@@ -1,0 +1,18 @@
+[jinx6:09714] *** Process received signal ***
+[jinx6:09714] Signal: Segmentation fault (11)
+[jinx6:09714] Signal code: Address not mapped (1)
+[jinx6:09714] Failing at address: 0x7f19003d93a8
+[jinx6:09714] [ 0] /lib64/libpthread.so.0() [0x35a960f7e0]
+[jinx6:09714] [ 1] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(opal_memory_ptmalloc2_int_malloc+0x1b2) [0x7f19b91c0502]
+[jinx6:09714] [ 2] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(+0x3b143) [0x7f19b91c2143]
+[jinx6:09714] [ 3] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(+0x1260b) [0x7f19b919960b]
+[jinx6:09714] [ 4] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(+0x13621) [0x7f19b919a621]
+[jinx6:09714] [ 5] /opt/openmpi-1.4.3-gcc44/lib/openmpi/mca_grpcomm_bad.so(+0x1d2f) [0x7f19b835fd2f]
+[jinx6:09714] [ 6] /opt/openmpi-1.4.3-gcc44/lib/libmpi.so.0(+0x377cb) [0x7f19b965d7cb]
+[jinx6:09714] [ 7] /nethome/pchoudhary32/CS6210_Project2/mpi/mcs_without_prints/mcs(main+0x225) [0x4013dd]
+[jinx6:09714] [ 8] /lib64/libc.so.6(__libc_start_main+0xfd) [0x35a8a1ed1d]
+[jinx6:09714] [ 9] /nethome/pchoudhary32/CS6210_Project2/mpi/mcs_without_prints/mcs() [0x400c59]
+[jinx6:09714] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 39 with PID 9714 on node jinx6 exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
