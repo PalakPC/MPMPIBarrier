@@ -1,4 +1,4 @@
-TEST_SRC  = dissemination.c dissemination-test.c
+TEST_SRC  = dissemination.c dissemination-test.c mytime.c
 TEST_OBJS = $(TEST_SRC:.cpp=.o)
 
 all: $(TEST_SRC) dissemination

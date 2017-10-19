@@ -7,17 +7,10 @@
 # include <stdio.h>
 # include <stdlib.h> //For exit()
 # include <stdbool.h>   //For boolean datatype
-# include <sys/time.h>  //For gettimeofday()
 //# include <float.h>  //For DBL_MAX
 
 # include "dissemination.h"   //Header
-
-double mysecond()
-{
-   struct timeval tp;
-   gettimeofday(&tp, NULL);
-   return ((double) tp.tv_sec + (double) tp.tv_usec / 1.e6);
-}
+# include "mytime.h" //For time
 
 int main(int argc, char **argv)
 {
@@ -130,8 +123,8 @@ int main(int argc, char **argv)
 //               barrier_total_time_spent = barrier_end_time - barrier_start_time;
                barrier_avg_time_spent /= NUM_THREADS;
 
-//               printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_total_time_spent);
-//               printf("Average time spent by a thread in barrier %d (in seconds): %f\n\n", i, barrier_avg_time_spent);
+//               printf("\nTotal time spent in barrier %d (in nanoseconds): %f\n", i, barrier_total_time_spent);
+//               printf("Average time spent by a thread in barrier %d (in nanoseconds): %f\n\n", i, barrier_avg_time_spent);
 
                overall_avg_time_spent += barrier_avg_time_spent;
 //               overall_total_time_spent += barrier_total_time_spent;
@@ -151,8 +144,8 @@ int main(int argc, char **argv)
    overall_avg_time_spent /= NUM_BARRIERS;
 //   overall_total_time_spent /= NUM_BARRIERS;
 
-   printf("Overall average time spent by a thread in a barrier (in seconds) for threads\t%d\t:\t%f\n", NUM_THREADS, overall_avg_time_spent);
-//   printf("Overall average time spent in a barrier: %f\n", overall_total_time_spent);
+   printf("Overall average time spent by a thread in a barrier (in nanoseconds) for threads\t%d\t:\t%f\n", NUM_THREADS, overall_avg_time_spent);
+//   printf("Overall average time spent in a barrier (in nanoseconds): %f\n", overall_total_time_spent);
 
    return 0;
 }

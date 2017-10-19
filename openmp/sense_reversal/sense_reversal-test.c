@@ -7,17 +7,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
-# include <sys/time.h>
 # include <float.h>  //for DBL_MAX
 
 # include "sense_reversal.h"
-
-double mysecond()
-{
-   struct timeval tp;
-   gettimeofday(&tp, NULL);
-   return ((double) tp.tv_sec + (double) tp.tv_usec / 1.e6);
-}
+# include "mytime.h"
 
 int main(int argc, char **argv)
 {

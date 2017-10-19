@@ -5,19 +5,12 @@
  */
 
 # include <stdio.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include <sys/time.h>
+# include <stdlib.h> //For exit()
+# include <stdbool.h>   //For boolean variables
 # include <float.h>  //For DBL_MAX
 
 # include "dissemination.h"
-
-double mysecond()
-{
-   struct timeval tp;
-   gettimeofday(&tp, NULL);
-   return (((double) tp.tv_sec * 1.e6) + (double) tp.tv_usec);
-}
+# include "mytime.h" //For time
 
 int main(int argc, char **argv)
 {
@@ -94,12 +87,6 @@ int main(int argc, char **argv)
 
       for (i = 0; i < NUM_BARRIERS; i++)
       {
-#        pragma omp single nowait//Only one thread should print this
-         {
-            printf("\nStats for barrier number: %d\n", i);
-            printf("\nThread ID\tTime Spent (in microseconds)\n\n");
-         }
-
          thread_start_time = mysecond();  //Starting time of this thread
 
 #        pragma omp critical  //Shared variable, need critical to ensure correctness
@@ -136,8 +123,8 @@ int main(int argc, char **argv)
                barrier_total_time_spent = barrier_end_time - barrier_start_time;
                barrier_avg_time_spent /= NUM_THREADS;
 
-               printf("\nTotal time spent in barrier %d (in microseconds): %f\n", i, barrier_total_time_spent);
-               printf("Average time spent by a thread in barrier %d (in microseconds): %f\n\n", i, barrier_avg_time_spent);
+               printf("\nTotal time spent in barrier %d (in nanoseconds): %f\n", i, barrier_total_time_spent);
+               printf("Average time spent by a thread in barrier %d (in nanoseconds): %f\n\n", i, barrier_avg_time_spent);
 
                overall_avg_time_spent += barrier_avg_time_spent;
                overall_total_time_spent += barrier_total_time_spent;
@@ -157,8 +144,8 @@ int main(int argc, char **argv)
    overall_avg_time_spent /= NUM_BARRIERS;
    overall_total_time_spent /= NUM_BARRIERS;
 
-   printf("Overall average time spent by a thread in a barrier (in microseconds): %f\n", overall_avg_time_spent);
-   printf("Overall average time spent in a barrier (in micrroseconds): %f\n", overall_total_time_spent);
+   printf("Overall average time spent by a thread in a barrier (in nanoseconds): %f\n", overall_avg_time_spent);
+   printf("Overall average time spent in a barrier (in nanoseconds): %f\n", overall_total_time_spent);
 
    return 0;
 }

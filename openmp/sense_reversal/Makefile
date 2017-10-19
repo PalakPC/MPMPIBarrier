@@ -1,4 +1,4 @@
-TEST_SRC  = sense_reversal-test.c sense_reversal.c
+TEST_SRC  = sense_reversal-test.c sense_reversal.c mytime.c
 TEST_OBJS = $(TEST_SRC:.cpp=.o)
 
 all: $(TEST_SRC) sense_reversal

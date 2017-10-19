@@ -21,7 +21,7 @@ void combined_barrier(int thread_num, int NUM_THREADS, flags *allnodes, int i, b
 {
    int flag; //To check whether if was executed or not
 
-   printf("Thread %d process %d in barrier %d\n", thread_num, rank, i);
+//   printf("Thread %d process %d in barrier %d\n", thread_num, rank, i);
 
    flag = 0;   //Initial value
    *local_sense = !(*local_sense);  //Toggle local sense
@@ -66,5 +66,5 @@ void combined_barrier(int thread_num, int NUM_THREADS, flags *allnodes, int i, b
       while (*sense != *local_sense);  //Keep waiting
    }
 
-   printf("Thread %d process %d out of barrier %d\n", thread_num, rank, i);
+//   printf("Thread %d process %d out of barrier %d\n", thread_num, rank, i);
 }

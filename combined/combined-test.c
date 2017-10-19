@@ -148,7 +148,7 @@ int main(int argc, char **argv)
          }
 
          thread_total_time_spent = thread_end_time - thread_start_time;
-         printf("%d\t%f\t%f\t%f\n", thread_num, thread_total_time_spent, thread_end_time, thread_start_time);
+//         printf("%d\t%f\t%f\t%f\n", thread_num, thread_total_time_spent, thread_end_time, thread_start_time);
 
 #        pragma omp atomic //Atomic operation to ensure correctness
          barrier_thread_avg_time_spent += thread_total_time_spent;
@@ -170,8 +170,8 @@ int main(int argc, char **argv)
             barrier_thread_total_time_spent = barrier_thread_end_time - barrier_thread_start_time;
             barrier_thread_avg_time_spent /= NUM_THREADS;
 
-            printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_thread_total_time_spent);
-            printf("Average time spent by a thread in barrier %d (in seconds): %f\n\n", i, barrier_thread_avg_time_spent);
+//            printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_thread_total_time_spent);
+//            printf("Average time spent by a thread in barrier %d (in seconds): %f\n\n", i, barrier_thread_avg_time_spent);
 
             overall_thread_avg_time_spent += barrier_thread_avg_time_spent;
             overall_thread_total_time_spent += barrier_thread_total_time_spent;
@@ -185,7 +185,7 @@ int main(int argc, char **argv)
             barrier_thread_end_time = 0;   //Minimum value for comparison
 
             process_total_time_spent = process_end_time - process_start_time;
-            printf("%d\t%f\t%f\t%f\n", rank, process_total_time_spent, process_end_time, process_start_time);
+//            printf("%d\t%f\t%f\t%f\n", rank, process_total_time_spent, process_end_time, process_start_time);
 
             MPI_Reduce(&process_start_time, &barrier_process_start_time, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
             MPI_Reduce(&process_end_time, &barrier_process_end_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
@@ -196,8 +196,8 @@ int main(int argc, char **argv)
                barrier_process_total_time_spent = barrier_process_end_time - barrier_process_start_time;
                barrier_process_avg_time_spent /= NUM_PROCESSES;
 
-               printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_process_total_time_spent);
-               printf("Average time spent by a process in barrier %d (in seconds): %f\n\n", i, barrier_process_avg_time_spent);
+//               printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_process_total_time_spent);
+//               printf("Average time spent by a process in barrier %d (in seconds): %f\n\n", i, barrier_process_avg_time_spent);
 
                overall_process_avg_time_spent += barrier_process_avg_time_spent;
                overall_process_total_time_spent += barrier_process_total_time_spent;

@@ -1,7 +1,0 @@
-Overall average time spent by a thread in a barrier (in seconds) for threads	2	:	0.000001
-Overall average time spent by a thread in a barrier (in seconds) for threads	3	:	0.000001
-Overall average time spent by a thread in a barrier (in seconds) for threads	4	:	0.000001
-Overall average time spent by a thread in a barrier (in seconds) for threads	5	:	0.000002
-Overall average time spent by a thread in a barrier (in seconds) for threads	6	:	0.000002
-Overall average time spent by a thread in a barrier (in seconds) for threads	7	:	0.000002
-Overall average time spent by a thread in a barrier (in seconds) for threads	8	:	0.000003

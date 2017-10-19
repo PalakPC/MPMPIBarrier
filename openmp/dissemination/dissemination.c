@@ -5,7 +5,7 @@
  */
 
 # include <stdio.h>
-# include <stdbool.h>
+# include <stdbool.h>   //For boolean variables
 
 # include "dissemination.h"
 
@@ -64,7 +64,7 @@ void dissemination_barrier(int t, int NUM_THREADS, flags *allnodes, int barrier,
    for (instance = 0; instance < logP; instance++)
    {
       *localflags->partnerflags[*parity][instance] = *sense;
-      while (localflags->myflags[*parity][instance] != *sense);
+      while (localflags->myflags[*parity][instance] != *sense);   //Wait till partner is done
    }
 
    if (*parity == 1)
