@@ -1,6 +1,6 @@
 #!/bin/sh
 #PBS -q cs6210 
-#PBS -l walltime=02:00:00
+#PBS -l walltime=00:25:00
 #PBS -N combined
 
 for n1 in {2..8}

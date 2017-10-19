@@ -147,7 +147,7 @@ int main(int argc, char **argv)
    {
       overall_avg_time_spent /= NUM_BARRIERS;
 
-      printf("Overall average time spent by a thread in a barrier (in nanoseconds): %Lf\n", overall_avg_time_spent);
+      printf("Overall average time (in nanoseconds) for processes and threads\t:\t%d\t%d\t%Lf\n", NUM_PROCESSES, NUM_THREADS, overall_avg_time_spent);
    }
 
    free(allnodes);
