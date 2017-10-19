@@ -81,8 +81,6 @@ int main(int argc, char **argv)
       bool thread_sense;
       bool local_sense;
 
-      int flag;   //Needed to check last thread
-
       /*
        * Private timing variables
        */
@@ -98,63 +96,58 @@ int main(int argc, char **argv)
       for (i = 0; i < NUM_BARRIERS; i++)
       {
          thread_start_time = mysecond();  //Starting time of this thread
-         
+
          combined_barrier(thread_num, NUM_THREADS, &allnodes[thread_num], i, &thread_sense, &parity, nodes, NUM_PROCESSES, rank, &process_sense, &count, &sense, &local_sense); //Call to barrier function
-         
+
          thread_end_time = mysecond();
 
          thread_total_time_spent = thread_end_time - thread_start_time;
-         printf("%d\t%Lu\t%Lu\t%Lu\n", thread_num, thread_total_time_spent, thread_end_time, thread_start_time);
+//         printf("%d\t%Lu\t%Lu\t%Lu\n", thread_num, thread_total_time_spent, thread_end_time, thread_start_time);
 
 #        pragma omp atomic //Atomic operation to ensure correctness
-            barrier_thread_avg_time_spent += thread_total_time_spent;
+         barrier_thread_avg_time_spent += thread_total_time_spent;
 
 #        pragma omp critical
          {
             counter++;
             if (counter == NUM_THREADS)
             {
-               flag = 1;
-            }
-         }
 
-         if (flag == 1)
-         {
-            barrier_thread_avg_time_spent /= NUM_THREADS;
+               barrier_thread_avg_time_spent /= NUM_THREADS;
 
-            printf("Average time spent by a thread of process %d in barrier %d (in nanoseconds): %Lf\n\n", i, rank, barrier_thread_avg_time_spent);
+//               printf("Average time spent by a thread of process %d in barrier %d (in nanoseconds): %Lf\n\n", i, rank, barrier_thread_avg_time_spent);
 
-            MPI_Reduce(&barrier_thread_avg_time_spent, &barrier_process_avg_time_spent, 1, MPI_LONG_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+               MPI_Reduce(&barrier_thread_avg_time_spent, &barrier_process_avg_time_spent, 1, MPI_LONG_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 
-            if (rank == 0)
-            {
-               barrier_process_avg_time_spent /= NUM_PROCESSES;
+               if (rank == 0)
+               {
+                  barrier_process_avg_time_spent /= NUM_PROCESSES;
 
-               printf("Average time spent by a thread in barrier %d (in nanoseconds): %Lf\n\n", i, barrier_process_avg_time_spent);
+//                  printf("Average time spent by a thread in barrier %d (in nanoseconds): %Lf\n\n", i, barrier_process_avg_time_spent);
 
-               overall_process_avg_time_spent += barrier_process_avg_time_spent;
+                  overall_avg_time_spent += barrier_process_avg_time_spent;
+
+                  /*
+                   * Restting values
+                   */
+                  barrier_process_avg_time_spent = 0;   //Initial value
+               }
 
                /*
                 * Restting values
                 */
-               barrier_process_avg_time_spent = 0;   //Initial value
+               counter = 0;
+               barrier_thread_avg_time_spent = 0;   //Initial value
             }
-
-            /*
-             * Restting values
-             */
-            counter = 0;
-            barrier_thread_avg_time_spent = 0;   //Initial value
-
          }
       }  //All barriers done
    }  //Parallel region end
 
    if (rank == 0)
    {
-      overall_process_avg_time_spent /= NUM_BARRIERS;
+      overall_avg_time_spent /= NUM_BARRIERS;
 
-      printf("Overall average time spent by a thread in a barrier (in nanoseconds): %Lf\n", overall_process_avg_time_spent);
+      printf("Overall average time spent by a thread in a barrier (in nanoseconds): %Lf\n", overall_avg_time_spent);
    }
 
    free(allnodes);

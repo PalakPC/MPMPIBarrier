@@ -7,8 +7,8 @@
 # include <omp.h>    //For OpenMP
 # include <math.h>   //For log function
 
-# define MAX_P 8
-# define MAX_LOGP 3  //Maximum number of threads is 8, so maximum log2(P) will be 3
+# define MAX_P 12
+# define MAX_LOGP 4  //Changed from original dissemination because number of threads increased. Maximum number of threads is 12, so maximum log2(P) will be 4
 
 typedef struct
 {

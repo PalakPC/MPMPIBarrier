@@ -17,7 +17,7 @@ void combined_init(int NUM_THREADS, flags *allnodes, treenode *nodes, int NUM_PR
    mcs_init(nodes, NUM_PROCESSES, rank, process_sense);
 }
 
-void combined_barrier(int thread_num, int NUM_THREADS, flags *allnodes, int i, bool *thread_sense, int *parity, treenode *nodes, int NUM_PROCESSES, int rank, bool *process_sense, int *count, bool *sense, bool*local_sense)
+void combined_barrier(int thread_num, int NUM_THREADS, flags *allnodes, int i, bool *thread_sense, int *parity, treenode *nodes, int NUM_PROCESSES, int rank, bool *process_sense, int *count, bool *sense, bool *local_sense)
 {
    int flag; //To check whether if was executed or not
 
