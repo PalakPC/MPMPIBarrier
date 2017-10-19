@@ -5,19 +5,13 @@
 # include <sys/time.h>
 # include <math.h>
 # include <unistd.h>
-
+#include "mytime.h"
 typedef struct
 {
    double avg_time_spent;
    double total_time_spent;
 } Measures;
 
-double mysecond()
-{
-   struct timeval tp;
-   gettimeofday(&tp, NULL);
-   return ((double) tp.tv_sec + (double) tp.tv_usec / 1.e6);
-}
 enum possible_roles
 {
 	WINNER,
@@ -157,15 +151,12 @@ int main(int argc, char **argv)
         int rank;
         int proc_num;
         int sense;
-   	double start_time;
-   	double end_time;
-   	double time_diff;
-   	double global_start_time;
-   	double global_end_time;
-   	double global_time_diff;
-   	double total_time;
-   	double overall_total_time;
-   	double overall_avg_time;
+   	unsigned long long process_start_time;  //Entry time of thread in barrier
+   	unsigned long long process_end_time; //Exit time of thread from barrier
+   	unsigned long long process_total_time_spent;  //Time spent by thread in a barrier
+   	unsigned long long receive_buffer;
+   	long double barrier_avg_time_spent;   //Average time a thread spent in a barrier
+   	long double overall_avg_time_spent;   //Average of average time a thread spent in a barrier
 
 	MPI_Init(&argc, &argv);
    	MPI_Comm_size(MPI_COMM_WORLD, &proc_num);
@@ -186,44 +177,41 @@ int main(int argc, char **argv)
       		n_barriers = atoi(argv[1]);
    	}
 
-   	overall_avg_time = 0;
-   	overall_total_time = 0;
-	tournament_init(curr_proc_rnd, rank, proc_num);
-	
-	for(int i=0; i < n_barriers; i++)
+   	tournament_init(curr_proc_rnd, rank, proc_num);
+	overall_avg_time_spent = 0;   //Initial value
+        barrier_avg_time_spent = 0;   //Initial value
+
+	int i;
+	for(i=0; i < n_barriers; i++)
 	{
 	
-		start_time = mysecond();
-	        printf("\nProcess %d in barrier %d\n", rank, i);
+		process_start_time = mysecond();
+	        //printf("\nProcess %d in barrier %d\n", rank, i);
 	        tour_barrier(curr_proc_rnd, rank, max_rnds);
-	        printf("Process %d out of barrier %d\n", rank, i);
-	        end_time = mysecond();
+	        //printf("Process %d out of barrier %d\n", rank, i);
+	        process_end_time = mysecond();
 	
-		time_diff = end_time - start_time;
-	        printf("Process %d spent %f in barrier %d\n", rank, time_diff, i);
+		process_total_time_spent = process_end_time - process_start_time;
+	        //printf("Process %d spent %f in barrier %d\n", rank, time_diff, i);
 
-		MPI_Reduce(&start_time, &global_start_time, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
-     	 	MPI_Reduce(&end_time, &global_end_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
-      		MPI_Reduce(&time_diff, &global_time_diff, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+      		MPI_Reduce(&process_total_time_spent, &receive_buffer, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 	
 		if (rank == 0)
      		 {
-         		total_time = global_end_time - global_start_time;
-		        overall_total_time += total_time;
-        		printf("\nTotal time spent in barrier %d: %f\n", i, total_time);
-      			global_time_diff /= proc_num;
-         		overall_avg_time += global_time_diff;
-         		printf("Average time spent by a thread in barrier %d: %f\n\n", i, global_time_diff);
+         		barrier_avg_time_spent = receive_buffer;
+		        barrier_avg_time_spent /= proc_num;
+			overall_avg_time_spent += barrier_avg_time_spent;
+			barrier_avg_time_spent = 0;   //Initial value
+
       		 }
 
 	}
 	if (rank == 0)
 	{
-		overall_avg_time /= n_barriers;
-	        overall_total_time /= n_barriers;
-
-      		printf("Overall average time spent by a process in a barrier: %f\n", overall_avg_time);
-      		printf("Overall average time spent in a barrier: %f\n", overall_total_time);
+		overall_avg_time_spent /= n_barriers;
+		printf("Overall average time spent by a process in a barrier for n_barriers = %d (in nanoseconds): %Lf\n",n_barriers, overall_avg_time_spent);
+      		//printf("Overall average time spent by a process in a barrier: %f\n", overall_avg_time);
+      		//printf("Overall average time spent in a barrier: %f\n", overall_total_time);
 	}
 	MPI_Finalize();
 	return 0;
