@@ -1,0 +1,7 @@
+Overall average time spent by a thread in a barrier (in nanoseconds): 527.184000
+Overall average time spent by a thread in a barrier (in nanoseconds): 1211.822333
+Overall average time spent by a thread in a barrier (in nanoseconds): 1564.470750
+Overall average time spent by a thread in a barrier (in nanoseconds): 2243.659200
+Overall average time spent by a thread in a barrier (in nanoseconds): 2352.444333
+Overall average time spent by a thread in a barrier (in nanoseconds): 2302.775429
+Overall average time spent by a thread in a barrier (in nanoseconds): 2650.166625

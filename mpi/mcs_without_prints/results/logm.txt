@@ -1,0 +1,11 @@
+Overall average time spent by a process in a barrier (in nanoseconds): 2982.002500
+Overall average time spent by a process in a barrier (in nanoseconds): 7532.539333
+Overall average time spent by a process in a barrier (in nanoseconds): 10479.267500
+Overall average time spent by a process in a barrier (in nanoseconds): 9678.657400
+Overall average time spent by a process in a barrier (in nanoseconds): 13654.920167
+Overall average time spent by a process in a barrier (in nanoseconds): 14541.764857
+Overall average time spent by a process in a barrier (in nanoseconds): 10914.644250
+Overall average time spent by a process in a barrier (in nanoseconds): 14801.650556
+Overall average time spent by a process in a barrier (in nanoseconds): 15718.390200
+Overall average time spent by a process in a barrier (in nanoseconds): 40444.181364
+Overall average time spent by a process in a barrier (in nanoseconds): 15886.862000
