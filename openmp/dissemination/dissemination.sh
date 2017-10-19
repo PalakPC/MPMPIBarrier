@@ -6,6 +6,7 @@
 
 for n in {2..8}
 do
+#touch /nethome/pchoudhary32/CS6210_Project2/opemnp/dissemination/results/logd_$n.txt
 	/nethome/pchoudhary32/CS6210_Project2/openmp/dissemination/dissemination 1000 $n > /nethome/pchoudhary32/CS6210_Project2/openmp/dissemination/results/logd_$n.txt
 done
 #eof
