@@ -81,8 +81,6 @@ int main(int argc, char **argv)
       bool thread_sense;
       bool local_sense;
 
-      int flag;   //Needed to check last thread
-
       /*
        * Private timing variables
        */
