@@ -1,0 +1,29 @@
+[jinx21:12278] *** Process received signal ***
+[jinx21:12278] Signal: Segmentation fault (11)
+[jinx21:12278] Signal code: Address not mapped (1)
+[jinx21:12278] Failing at address: 0x13b04a0
+[jinx21:12278] [ 0] /lib64/libpthread.so.0() [0x374cc0f7e0]
+[jinx21:12278] [ 1] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(+0x369c1) [0x7fa4fb26e9c1]
+[jinx21:12278] [ 2] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(opal_memory_ptmalloc2_int_malloc+0x119) [0x7fa4fb271469]
+[jinx21:12278] [ 3] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(+0x3b143) [0x7fa4fb273143]
+[jinx21:12278] [ 4] /lib64/libc.so.6(__libc_calloc+0x331) [0x374c07a9e1]
+[jinx21:12278] [ 5] /lib64/ld-linux-x86-64.so.2() [0x374bc0b13f]
+[jinx21:12278] [ 6] /lib64/ld-linux-x86-64.so.2() [0x374bc0745e]
+[jinx21:12278] [ 7] /lib64/ld-linux-x86-64.so.2() [0x374bc08662]
+[jinx21:12278] [ 8] /lib64/ld-linux-x86-64.so.2() [0x374bc12ef5]
+[jinx21:12278] [ 9] /lib64/ld-linux-x86-64.so.2() [0x374bc0e5e6]
+[jinx21:12278] [10] /lib64/ld-linux-x86-64.so.2() [0x374bc1299a]
+[jinx21:12278] [11] /lib64/libc.so.6() [0x374c126ef0]
+[jinx21:12278] [12] /lib64/ld-linux-x86-64.so.2() [0x374bc0e5e6]
+[jinx21:12278] [13] /lib64/libc.so.6(__libc_dlopen_mode+0x47) [0x374c127047]
+[jinx21:12278] [14] /lib64/libpthread.so.0() [0x374cc0feec]
+[jinx21:12278] [15] /lib64/libpthread.so.0() [0x374cc1004c]
+[jinx21:12278] [16] /lib64/libpthread.so.0(__pthread_unwind+0x40) [0x374cc0df60]
+[jinx21:12278] [17] /lib64/libpthread.so.0() [0x374cc08175]
+[jinx21:12278] [18] /opt/openmpi-1.4.3-gcc44/lib/openmpi/mca_btl_openib.so(+0x175d3) [0x7fa4f818b5d3]
+[jinx21:12278] [19] /lib64/libpthread.so.0() [0x374cc07aa1]
+[jinx21:12278] [20] /lib64/libc.so.6(clone+0x6d) [0x374c0e8bcd]
+[jinx21:12278] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 21 with PID 12278 on node jinx21 exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------

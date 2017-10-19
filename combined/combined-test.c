@@ -44,7 +44,7 @@ int main(int argc, char **argv)
     */
    if (argc != 3)
    {
-      printf("Error, invalid number of arguments\nProper usage: ./dissemination <number of barriers> <number of threads>\nExiting\n");
+      printf("Error, invalid number of arguments\nProper usage: mpirun -np <number of processes> ./combined <number of barriers> <number of threads>\nExiting\n");
       exit(-1);   //Improper call, so exit the program
    }
    else

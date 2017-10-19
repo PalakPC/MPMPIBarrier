@@ -93,7 +93,7 @@ int main(int argc, char **argv)
    {
       overall_avg_time_spent /= NUM_BARRIERS;
 
-      printf("Overall average time spent by a process in a barrier (in nanoseconds): %Lf\n", overall_avg_time_spent);
+      printf("Overall average time spent by a process in a barrier (in nanoseconds) for processes\t%d\t:\t%Lf\n", NUM_PROCESSES, overall_avg_time_spent);
    }
    
    MPI_Finalize();

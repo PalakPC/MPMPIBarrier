@@ -1,0 +1,42 @@
+[jinx6:07494] *** Process received signal ***
+[jinx6:07494] Signal: Segmentation fault (11)
+[jinx6:07494] Signal code: Address not mapped (1)
+[jinx6:07494] Failing at address: 0x43acc45343a8
+[jinx6:07494] [ 0] /lib64/libpthread.so.0() [0x35a960f7e0]
+[jinx6:07494] [ 1] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(opal_memory_ptmalloc2_int_malloc+0x1b2) [0x7facc431b502]
+[jinx6:07494] [ 2] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(+0x3b143) [0x7facc431d143]
+[jinx6:07494] [ 3] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(+0x1260b) [0x7facc42f460b]
+[jinx6:07494] [ 4] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(+0x13621) [0x7facc42f5621]
+[jinx6:07494] [ 5] /opt/openmpi-1.4.3-gcc44/lib/openmpi/mca_grpcomm_bad.so(+0x1d2f) [0x7facc34bad2f]
+[jinx6:07494] [ 6] /opt/openmpi-1.4.3-gcc44/lib/libmpi.so.0(+0x377cb) [0x7facc47b87cb]
+[jinx6:07494] [ 7] /nethome/pchoudhary32/CS6210_Project2/mpi/mcs_without_prints/mcs(main+0x225) [0x4013dd]
+[jinx6:07494] [ 8] /lib64/libc.so.6(__libc_start_main+0xfd) [0x35a8a1ed1d]
+[jinx6:07494] [ 9] /nethome/pchoudhary32/CS6210_Project2/mpi/mcs_without_prints/mcs() [0x400c59]
+[jinx6:07494] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 41 with PID 7494 on node jinx6 exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[jinx6:08162] *** Process received signal ***
+[jinx6:08162] Signal: Segmentation fault (11)
+[jinx6:08162] Signal code: Address not mapped (1)
+[jinx6:08162] Failing at address: 0x18
+[jinx6:08162] [ 0] /lib64/libpthread.so.0() [0x35a960f7e0]
+[jinx6:08162] [ 1] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(opal_memory_ptmalloc2_int_free+0x2eb) [0x7fcdc9e217eb]
+[jinx6:08162] [ 2] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(+0x38deb) [0x7fcdc9e22deb]
+[jinx6:08162] [ 3] /opt/openmpi-1.4.3-gcc44/lib/libopen-pal.so.0(+0xe2ed) [0x7fcdc9df82ed]
+[jinx6:08162] [ 4] /opt/openmpi-1.4.3-gcc44/lib/libmpi.so.0(+0x378a9) [0x7fcdca2c08a9]
+[jinx6:08162] [ 5] /nethome/pchoudhary32/CS6210_Project2/mpi/mcs_without_prints/mcs(main+0x225) [0x4013dd]
+[jinx6:08162] [ 6] /lib64/libc.so.6(__libc_start_main+0xfd) [0x35a8a1ed1d]
+[jinx6:08162] [ 7] /nethome/pchoudhary32/CS6210_Project2/mpi/mcs_without_prints/mcs() [0x400c59]
+[jinx6:08162] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 68 with PID 8162 on node jinx6 exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+=>> PBS: job killed: walltime 502 exceeded limit 480
+mpirun: killing job...
+
+--------------------------------------------------------------------------
+mpirun noticed that process rank 0 with PID 8315 on node jinx6 exited on signal 0 (Unknown signal 0).
+--------------------------------------------------------------------------
+mpirun: clean termination accomplished
+
