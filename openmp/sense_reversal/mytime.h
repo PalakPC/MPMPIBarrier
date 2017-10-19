@@ -14,4 +14,4 @@
 #  define CLOCKID CLOCK_REALTIME
 # endif
 
-double mysecond();
+unsigned long long mysecond();

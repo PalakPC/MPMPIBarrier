@@ -1,4 +1,4 @@
-TEST_SRC  = mcs.c mcs-test.c
+TEST_SRC  = mcs.c mcs-test.c mytime.c
 TEST_OBJS = $(TEST_SRC:.cpp=.o)
 
 all: $(TEST_SRC) mcs

@@ -5,7 +5,7 @@
  */
 
 # include <stdio.h>
-# include <stdbool.h>
+# include <stdbool.h>   //For boolean variables
 
 # include "sense_reversal.h"
 

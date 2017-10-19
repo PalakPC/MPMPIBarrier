@@ -5,15 +5,15 @@
  * Palak Choudhary
  */
 
-#include <stdint.h>
-#include <stdio.h>
+# include <stdint.h>
+# include <stdio.h>
 
 # include "mytime.h"
 
-double mysecond()
+unsigned long long mysecond()
 {
    struct timespec tp;
    clock_gettime(CLOCKID, &tp);
 
-   return (((double) tp.tv_sec) + ((double) tp.tv_nsec / 1.e9));
+   return ((unsigned long long)(tp.tv_sec * 1.e9) + (unsigned long long)tp.tv_nsec);
 }

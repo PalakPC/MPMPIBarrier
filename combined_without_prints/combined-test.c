@@ -5,19 +5,11 @@
  */
 
 # include <stdio.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include <sys/time.h>
-# include <float.h>  //for DBL_MAX
+# include <stdlib.h> //For exit()
+# include <stdbool.h>   //For boolean variables
 
 # include "combined.h"
-
-double mysecond()
-{
-   struct timeval tp;
-   gettimeofday(&tp, NULL);
-   return ((double) tp.tv_sec + (double) tp.tv_usec / 1.e6);
-}
+# include "mytime.h"
 
 int main(int argc, char **argv)
 {
@@ -33,21 +25,9 @@ int main(int argc, char **argv)
     */
    int counter;
 
-   double barrier_process_avg_time_spent;   //Average time a thread spent in a barrier
-   double overall_process_avg_time_spent;   //Average of average time a thread spent in a barrier
-   double barrier_thread_avg_time_spent;   //Average time a thread spent in a barrier
-//   double process_start_time;  //Entry time of thread in barrier
-//   double process_end_time; //Exit time of thread from barrier
-//   double process_total_time_spent;  //Time spent by thread in a barrier
-//   double barrier_process_start_time; //Start time of a barrier
-//   double barrier_process_end_time;   //End time of a barrier
-//   double barrier_process_total_time_spent; //Total time spent in a barrier
-//   double overall_process_total_time_spent; //Average of total time spent in a barrier
-//   double barrier_thread_start_time; //Start time of a barrier
-//   double barrier_thread_end_time;   //End time of a barrier
-//   double barrier_thread_total_time_spent; //Total time spent in a barrier
-//   double overall_thread_avg_time_spent;   //Average of average time a thread spent in a barrier
-//   double overall_thread_total_time_spent; //Average of total time spent in a barrier
+   long double barrier_thread_avg_time_spent;   //Average time a thread spent in a barrier
+   long double barrier_process_avg_time_spent;   //Average time a thread spent in a barrier
+   long double overall_avg_time_spent;   //Average of average time a thread spent in a barrier
 
    /*
     * Variables needed for algorithm logic
@@ -82,20 +62,11 @@ int main(int argc, char **argv)
 
    combined_init(NUM_THREADS, allnodes, nodes, NUM_PROCESSES, rank, &process_sense, &count, &sense);   //Set initial state of allnodes
 
-//   overall_thread_avg_time_spent = 0;   //Initial value
-//   overall_thread_total_time_spent = 0; //Initial value
-
-   overall_process_avg_time_spent = 0;   //Initial value
-//   overall_process_total_time_spent = 0; //Initial value
+   overall_avg_time_spent = 0;   //Initial value
 
    counter = 0;
    barrier_thread_avg_time_spent = 0;   //Initial value
-//   barrier_thread_start_time = DBL_MAX; //Maximum value for comparison
-//   barrier_thread_end_time = 0;   //Minimum value for comparison
-
    barrier_process_avg_time_spent = 0;   //Initial value
-//   barrier_process_start_time = DBL_MAX; //Maximum value for comparison
-//   barrier_process_end_time = 0;   //Minimum value for comparison
 
    omp_set_num_threads(NUM_THREADS);   //Setting number of threads for parallel section
 
@@ -115,9 +86,9 @@ int main(int argc, char **argv)
       /*
        * Private timing variables
        */
-      double thread_start_time;  //Entry time of thread in barrier
-      double thread_end_time; //Exit time of thread from barrier
-      double thread_total_time_spent;  //Time spent by thread in a barrier
+      unsigned long long thread_start_time;  //Entry time of thread in barrier
+      unsigned long long thread_end_time; //Exit time of thread from barrier
+      unsigned long long thread_total_time_spent;  //Time spent by thread in a barrier
 
       thread_num = omp_get_thread_num();  //To get thread ID
       parity = 0; //Initial value
@@ -127,33 +98,16 @@ int main(int argc, char **argv)
       for (i = 0; i < NUM_BARRIERS; i++)
       {
          thread_start_time = mysecond();  //Starting time of this thread
+         
          combined_barrier(thread_num, NUM_THREADS, &allnodes[thread_num], i, &thread_sense, &parity, nodes, NUM_PROCESSES, rank, &process_sense, &count, &sense, &local_sense); //Call to barrier function
+         
          thread_end_time = mysecond();
 
-//#        pragma omp critical  //Shared variable, need critical to ensure correctness
-//         {
-//            if (thread_start_time < barrier_thread_start_time)
-//            {
-//               barrier_thread_start_time = thread_start_time;   //To get the time when first thread entered the barrier
-//            }
-//         }
-
-//#        pragma omp critical  //Shared variable, need critical to ensure correctness
-//         {
-//            if (thread_end_time > barrier_thread_end_time)
-//            {
-//               barrier_thread_end_time = thread_end_time; //To get the time when last thread exited the barrier
-//            }
-//         }
-
          thread_total_time_spent = thread_end_time - thread_start_time;
-//         printf("%d\t%f\t%f\t%f\n", thread_num, thread_total_time_spent, thread_end_time, thread_start_time);
+         printf("%d\t%Lu\t%Lu\t%Lu\n", thread_num, thread_total_time_spent, thread_end_time, thread_start_time);
 
 #        pragma omp atomic //Atomic operation to ensure correctness
-         barrier_thread_avg_time_spent += thread_total_time_spent;
-
-//         process_start_time = barrier_thread_start_time;
-//         process_end_time = barrier_thread_end_time;
+            barrier_thread_avg_time_spent += thread_total_time_spent;
 
 #        pragma omp critical
          {
@@ -166,66 +120,45 @@ int main(int argc, char **argv)
 
          if (flag == 1)
          {
-//            barrier_thread_total_time_spent = barrier_thread_end_time - barrier_thread_start_time;
             barrier_thread_avg_time_spent /= NUM_THREADS;
 
-            MPI_Reduce(&barrier_thread_avg_time_spent, &barrier_process_avg_time_spent, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
-//            printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_thread_total_time_spent);
-//            printf("Average time spent by a thread in barrier %d (in seconds): %f\n\n", i, barrier_thread_avg_time_spent);
+            printf("Average time spent by a thread of process %d in barrier %d (in nanoseconds): %Lf\n\n", i, rank, barrier_thread_avg_time_spent);
 
-//            overall_thread_avg_time_spent += barrier_thread_avg_time_spent;
-//            overall_thread_total_time_spent += barrier_thread_total_time_spent;
+            MPI_Reduce(&barrier_thread_avg_time_spent, &barrier_process_avg_time_spent, 1, MPI_LONG_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+
+            if (rank == 0)
+            {
+               barrier_process_avg_time_spent /= NUM_PROCESSES;
+
+               printf("Average time spent by a thread in barrier %d (in nanoseconds): %Lf\n\n", i, barrier_process_avg_time_spent);
+
+               overall_process_avg_time_spent += barrier_process_avg_time_spent;
+
+               /*
+                * Restting values
+                */
+               barrier_process_avg_time_spent = 0;   //Initial value
+            }
 
             /*
              * Restting values
              */
             counter = 0;
             barrier_thread_avg_time_spent = 0;   //Initial value
-//            barrier_thread_start_time = DBL_MAX; //Maximum value for comparison
-//            barrier_thread_end_time = 0;   //Minimum value for comparison
 
-//            process_total_time_spent = process_end_time - process_start_time;
-//            printf("%d\t%f\t%f\t%f\n", rank, process_total_time_spent, process_end_time, process_start_time);
-
-//            MPI_Reduce(&process_start_time, &barrier_process_start_time, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
-//            MPI_Reduce(&process_end_time, &barrier_process_end_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
-
-            if (rank == 0)
-            {
-//               barrier_process_total_time_spent = barrier_process_end_time - barrier_process_start_time;
-               barrier_process_avg_time_spent /= NUM_PROCESSES;
-
-//               printf("\nTotal time spent in barrier %d (in seconds): %f\n", i, barrier_process_total_time_spent);
-//               printf("Average time spent by a process in barrier %d (in seconds): %f\n\n", i, barrier_process_avg_time_spent);
-
-               overall_process_avg_time_spent += barrier_process_avg_time_spent;
-//               overall_process_total_time_spent += barrier_process_total_time_spent;
-
-               /*
-                * Restting values
-                */
-               barrier_process_avg_time_spent = 0;   //Initial value
-//               barrier_process_start_time = DBL_MAX; //Maximum value for comparison
-//               barrier_process_end_time = 0;   //Minimum value for comparison
-            }
          }
       }  //All barriers done
    }  //Parallel region end
 
-//   overall_thread_avg_time_spent /= NUM_BARRIERS;
-//   overall_thread_total_time_spent /= NUM_BARRIERS;
-
-//   printf("Overall average time spent by a thread in a barrier (in seconds): %f\n", overall_thread_avg_time_spent);
-//   printf("Overall average time spent in a barrier: %f\n", overall_thread_total_time_spent);
-
    if (rank == 0)
    {
       overall_process_avg_time_spent /= NUM_BARRIERS;
-//      overall_process_total_time_spent /= NUM_BARRIERS;
 
-      printf("Overall average (across processes) of time spent by a thread in a barrier (in seconds) for number of process and threads:\t%d\t%d\t:\t%f\n", NUM_PROCESSES, NUM_THREADS, overall_process_avg_time_spent);
-//      printf("Overall average time spent in a barrier: %f\n", overall_process_total_time_spent);
+      printf("Overall average time spent by a thread in a barrier (in nanoseconds): %Lf\n", overall_process_avg_time_spent);
    }
+
+   free(allnodes);
+   free(nodes);
 
    MPI_Finalize();
    return 0;

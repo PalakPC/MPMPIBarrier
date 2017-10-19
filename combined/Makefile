@@ -1,4 +1,4 @@
-TEST_SRC  = combined.c combined-test.c dissemination.c mcs.c
+TEST_SRC  = combined.c combined-test.c dissemination.c mcs.c mytime.c
 TEST_OBJS = $(TEST_SRC:.cpp=.o)
 
 all: $(TEST_SRC) combined
