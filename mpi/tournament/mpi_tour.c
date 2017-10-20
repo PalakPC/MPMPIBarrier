@@ -6,6 +6,7 @@
 # include <math.h>
 # include <unistd.h>
 #include "mytime.h"
+
 typedef struct
 {
    double avg_time_spent;

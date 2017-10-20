@@ -1,0 +1,11 @@
+Overall average time spent by a process in a barrier for n_barriers = 1000 (in nanoseconds): 682.417500
+Overall average time spent by a process in a barrier for n_barriers = 1000 (in nanoseconds): 1570.791333
+Overall average time spent by a process in a barrier for n_barriers = 1000 (in nanoseconds): 31732.613000
+Overall average time spent by a process in a barrier for n_barriers = 1000 (in nanoseconds): 2830.761600
+Overall average time spent by a process in a barrier for n_barriers = 1000 (in nanoseconds): 3264.416333
+Overall average time spent by a process in a barrier for n_barriers = 1000 (in nanoseconds): 3760.727857
+Overall average time spent by a process in a barrier for n_barriers = 1000 (in nanoseconds): 2940.618250
+Overall average time spent by a process in a barrier for n_barriers = 1000 (in nanoseconds): 3547.756889
+Overall average time spent by a process in a barrier for n_barriers = 1000 (in nanoseconds): 3574.554300
+Overall average time spent by a process in a barrier for n_barriers = 1000 (in nanoseconds): 3670.749545
+Overall average time spent by a process in a barrier for n_barriers = 1000 (in nanoseconds): 3829.122583
