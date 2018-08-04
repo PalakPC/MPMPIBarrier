@@ -67,7 +67,7 @@ void mcs_barrier(treenode *nodes, int NUM_PROCESSES, int barrier, int rank, bool
    MPI_Status status_1;
    MPI_Status status_2;
 
-   printf("\nProcess %d in barrier %d\n", rank, barrier);
+//   printf("\nProcess %d in barrier %d\n", rank, barrier);
    
    for (i = 0; i < A_ARY; ++i)
    {
@@ -105,5 +105,5 @@ void mcs_barrier(treenode *nodes, int NUM_PROCESSES, int barrier, int rank, bool
    }
    
    *sense = !(*sense);
-   printf("Process %d out of barrier %d\n", rank, barrier);
+//   printf("Process %d out of barrier %d\n", rank, barrier);
 }

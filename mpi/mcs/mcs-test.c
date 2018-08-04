@@ -69,16 +69,16 @@ int main(int argc, char **argv)
       process_end_time = mysecond();
       
       process_total_time_spent = process_end_time - process_start_time;
-      printf("%d\t%Lu\t%Lu\t%Lu\n", rank, process_total_time_spent, process_end_time, process_start_time);
+//      printf("%d\t%Lu\t%Lu\t%Lu\n", rank, process_total_time_spent, process_end_time, process_start_time);
       
-      MPI_Reduce(&process_total_time_spent, &recieve_buffer, 1, MPI_UNSIGNED_LONG_LONG, MPI_SUM, 0, MPI_COMM_WORLD);
+      MPI_Reduce(&process_total_time_spent, &recieve_buffer, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
       
       if (rank == 0)
       {
          barrier_avg_time_spent = recieve_buffer;
          barrier_avg_time_spent /= NUM_PROCESSES;
 
-         printf("Average time spent by a process in barrier %d (in nanoseconds): %Lf\n\n", i, barrier_avg_time_spent);
+//         printf("Average time spent by a process in barrier %d (in nanoseconds): %Lf\n\n", i, barrier_avg_time_spent);
 
          overall_avg_time_spent += barrier_avg_time_spent;
          
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
    {
       overall_avg_time_spent /= NUM_BARRIERS;
 
-      printf("Overall average time spent by a process in a barrier (in nanoseconds): %Lf\n", overall_avg_time_spent);
+      printf("Overall average time spent by a process in a barrier (in nanoseconds) for processes\t%d\t:\t%Lf\n", NUM_PROCESSES, overall_avg_time_spent);
    }
    
    MPI_Finalize();

@@ -102,7 +102,7 @@ int main(int argc, char **argv)
          thread_end_time = mysecond();
 
          thread_total_time_spent = thread_end_time - thread_start_time;
-         printf("%d\t%Lu\t%Lu\t%Lu\n", thread_num, thread_total_time_spent, thread_end_time, thread_start_time);
+//         printf("%d\t%Lu\t%Lu\t%Lu\n", thread_num, thread_total_time_spent, thread_end_time, thread_start_time);
 
 #        pragma omp atomic //Atomic operation to ensure correctness
          barrier_thread_avg_time_spent += thread_total_time_spent;
@@ -112,9 +112,10 @@ int main(int argc, char **argv)
             counter++;
             if (counter == NUM_THREADS)
             {
+
                barrier_thread_avg_time_spent /= NUM_THREADS;
 
-               printf("Average time spent by a thread of process %d in barrier %d (in nanoseconds): %Lf\n\n", i, rank, barrier_thread_avg_time_spent);
+//               printf("Average time spent by a thread of process %d in barrier %d (in nanoseconds): %Lf\n\n", i, rank, barrier_thread_avg_time_spent);
 
                MPI_Reduce(&barrier_thread_avg_time_spent, &barrier_process_avg_time_spent, 1, MPI_LONG_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 
@@ -122,7 +123,7 @@ int main(int argc, char **argv)
                {
                   barrier_process_avg_time_spent /= NUM_PROCESSES;
 
-                  printf("Average time spent by a thread in barrier %d (in nanoseconds): %Lf\n\n", i, barrier_process_avg_time_spent);
+//                  printf("Average time spent by a thread in barrier %d (in nanoseconds): %Lf\n\n", i, barrier_process_avg_time_spent);
 
                   overall_avg_time_spent += barrier_process_avg_time_spent;
 
@@ -146,7 +147,7 @@ int main(int argc, char **argv)
    {
       overall_avg_time_spent /= NUM_BARRIERS;
 
-      printf("Overall average time spent by a thread in a barrier (in nanoseconds): %Lf\n", overall_avg_time_spent);
+      printf("Overall average time (in nanoseconds) for processes and threads\t:\t%d\t%d\t%Lf\n", NUM_PROCESSES, NUM_THREADS, overall_avg_time_spent);
    }
 
    free(allnodes);

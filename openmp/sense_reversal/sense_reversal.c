@@ -30,7 +30,7 @@ void sense_reversal_barrier(int thread_num, int NUM_THREADS, int barrier, int *c
    flag = 0;
    *local_sense = !(*local_sense);
 
-   printf("Thread %d in barrier %d\n", thread_num, barrier);
+//   printf("Thread %d in barrier %d\n", thread_num, barrier);
 
 #  pragma omp atomic
       (*count) -= 1;
@@ -50,5 +50,5 @@ void sense_reversal_barrier(int thread_num, int NUM_THREADS, int barrier, int *c
       while (*sense != *local_sense);
    }
 
-   printf("Thread %d out of barrier %d\n", thread_num, barrier);
+//   printf("Thread %d out of barrier %d\n", thread_num, barrier);
 }

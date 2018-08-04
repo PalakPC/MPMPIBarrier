@@ -73,7 +73,7 @@ int main(int argc, char **argv)
 	 thread_end_time = mysecond();
 
          thread_total_time_spent = thread_end_time - thread_start_time;
-         printf("%d\t%Lu\t%Lu\t%Lu\n", thread_num, thread_total_time_spent, thread_end_time, thread_start_time);
+//         printf("%d\t%Lu\t%Lu\t%Lu\n", thread_num, thread_total_time_spent, thread_end_time, thread_start_time);
 
 #        pragma omp atomic //Atomic operation to ensure correctness
             barrier_avg_time_spent += thread_total_time_spent;
@@ -85,7 +85,7 @@ int main(int argc, char **argv)
             {
                barrier_avg_time_spent /= NUM_THREADS;
 
-               printf("Average time spent by a thread in barrier %d (in nanoseconds): %Lf\n\n", i, barrier_avg_time_spent);
+//               printf("Average time spent by a thread in barrier %d (in nanoseconds): %Lf\n\n", i, barrier_avg_time_spent);
 
                overall_avg_time_spent += barrier_avg_time_spent;
 

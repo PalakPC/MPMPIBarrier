@@ -56,7 +56,7 @@ void dissemination_barrier(int t, int NUM_THREADS, flags *allnodes, int barrier,
    int logP;
    flags *localflags;
 
-   printf("Thread %d in barrier %d\n", t, barrier);
+//   printf("Thread %d in barrier %d\n", t, barrier);
 
    localflags = allnodes;
    logP = ceil(log2(NUM_THREADS));
@@ -72,5 +72,5 @@ void dissemination_barrier(int t, int NUM_THREADS, flags *allnodes, int barrier,
 
    *parity = 1 - *parity;
 
-   printf("Thread %d out of barrier %d\n", t, barrier);
+//   printf("Thread %d out of barrier %d\n", t, barrier);
 }
